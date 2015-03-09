@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # author: greyshell 
-# Acknowledge to Mike Czumak's reconscan code: http://www.securitysift.com/download/recon_scan.zip
+# Acknowledge to Mike Czumak's basic reconscan script
 
 # Note: Provide ip address inside targets.txt
 
