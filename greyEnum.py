@@ -163,13 +163,13 @@ def portScan(ip_address):
 	a = results.split("\n")
 	path = a[0]
 	
-	if os.path.isdir("recon_results"):
+	if os.path.isdir("enum_results"):
 		pass
 	else:
-		TST = "mkdir recon_results"
+		TST = "mkdir %s_enum_results"%ip_address
 		results = subprocess.check_output(TST, shell=True)
 
-	path = path + '/recon_results'
+	path = path + '/' + ip_address + '_enum_results'
 
 	print "\nINFO: Performing xprobe2 OS scan for " + ip_address
 	XPROBE = "xprobe2 %s > %s/%s_xprobe_os.txt" % (ip_address, path, ip_address)
