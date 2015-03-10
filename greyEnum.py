@@ -43,7 +43,7 @@ def unicornPortProcessing(results):
 def httpEnum(ip_address, port, path):
 	print "\nINFO: Detected http on " + ip_address + ":" + port
 	print "\nINFO: Running nse http scripts for " + ip_address 
-	CMD = "nmap -sV -Pn -p %s --script=http-vhosts,http-userdir-enum,http-apache-negotiation,http-backup-finder,http-config-backup,http-default-accounts,http-email-harvest,http-methods,http-method-tamper,http-passwd,http-robots.txt,http-iis-webdav-vuln,http-vuln-cve2009-3960,http-vuln-cve2010-0738,http-vuln-cve2011-3368,http-vuln-cve2012-1823,http-vuln-cve2013-0156,http-waf-detect,http-waf-fingerprint -oN '%s/%s_nse_http_%s_result.txt' %s" % (port, path, ip_address, port, ip_address)
+	CMD = "nmap -sV -Pn -p %s --script=http-enum,http-vhosts,http-userdir-enum,http-apache-negotiation,http-backup-finder,http-config-backup,http-default-accounts,http-email-harvest,http-methods,http-method-tamper,http-passwd,http-robots.txt,http-iis-webdav-vuln,http-vuln-cve2009-3960,http-vuln-cve2010-0738,http-vuln-cve2011-3368,http-vuln-cve2012-1823,http-vuln-cve2013-0156,http-waf-detect,http-waf-fingerprint -oN '%s/%s_nse_http_%s_result.txt' %s" % (port, path, ip_address, port, ip_address)
 	print CMD	
 	results = safeBlock(CMD)	
 	return
@@ -52,7 +52,7 @@ def httpEnum(ip_address, port, path):
 def httpsEnum(ip_address, port, path):
 	print "\nINFO: Detected https on " + ip_address + ":" + port	
 	print "\nINFO: Running nse https scripts for " + ip_address 
-	CMD = "nmap -sV -Pn -p %s --script=http-vhosts,http-userdir-enum,http-apache-negotiation,http-backup-finder,http-config-backup,http-default-accounts,http-email-harvest,http-methods,http-method-tamper,http-passwd,http-robots.txt,http-iis-webdav-vuln,http-vuln-cve2009-3960,http-vuln-cve2010-0738,http-vuln-cve2011-3368,http-vuln-cve2012-1823,http-vuln-cve2013-0156,http-waf-detect,http-waf-fingerprint,ssl-enum-ciphers,ssl-known-key -oN '%s/%s_nse_https_%s_result.txt' %s" % (port, path, ip_address, port, ip_address)
+	CMD = "nmap -sV -Pn -p %s --script=http-enum,http-vhosts,http-userdir-enum,http-apache-negotiation,http-backup-finder,http-config-backup,http-default-accounts,http-email-harvest,http-methods,http-method-tamper,http-passwd,http-robots.txt,http-iis-webdav-vuln,http-vuln-cve2009-3960,http-vuln-cve2010-0738,http-vuln-cve2011-3368,http-vuln-cve2012-1823,http-vuln-cve2013-0156,http-waf-detect,http-waf-fingerprint,ssl-enum-ciphers,ssl-known-key -oN '%s/%s_nse_https_%s_result.txt' %s" % (port, path, ip_address, port, ip_address)
 	print CMD	
 	results = safeBlock(CMD)
 	return
@@ -89,7 +89,7 @@ def ntpEnum(ip_address, port, path):
 def rdpEnum(ip_address, port, path):
 	print "\nINFO: Detected test on " + ip_address + ":" + port
 	print "\nINFO: Running nse RDP  scripts for " + ip_address 
-	CMD = "nmap -Pn -sV -p %s --script=rdp-ms12-020 -oN '%s/%s_nse_rdp_result.txt' %s" % (port, path, ip_address, ip_address)
+	CMD = "nmap -Pn -sV -p %s --script=rdp-enum-encryption -oN '%s/%s_nse_rdp_result.txt' %s" % (port, path, ip_address, ip_address)
 	print CMD	
 	results = safeBlock(CMD)
 	return
@@ -229,11 +229,18 @@ def portScan(ip_address):
 	uni_ports = unicornPortProcessing(results)
 	uni_ports = uni_ports[2:-1]
 
-	print "\nINFO: Running nmap UDP scan for " + ip_address
-	# nmap scans particular UDP port that has been already identified by unicornscan
-	UDPSCAN = "nmap -vv -Pn -A -sC -sU -T 3 -p %s -oN '%s/%s_nmap_udp.txt'  %s --open" % (uni_ports, path, ip_address, ip_address)
-	print UDPSCAN
-	udpresults = safeBlock(UDPSCAN)
+	if uni_ports == '  ':
+		print "\nINFO: Running independent nmap UDP scan for " + ip_address
+		# nmap scan default UDP ports
+		UDPSCAN = "nmap -vv -Pn -A -sC -sU -T 3 -oN '%s/%s_nmap_UDP.txt'  %s --open" % (path, ip_address, ip_address)
+		print UDPSCAN
+		udpresults = safeBlock(UDPSCAN)
+	else:
+		print "\nINFO: Running nmap UDP scan for " + ip_address
+		# nmap scans particular UDP port that has been already identified by unicornscan
+		UDPSCAN = "nmap -vv -Pn -A -sC -sU -T 3 -p %s -oN '%s/%s_nmap_udp.txt'  %s --open" % (uni_ports, path, ip_address, ip_address)
+		print UDPSCAN
+		udpresults = safeBlock(UDPSCAN)
 
 	
 	# Processing UDP ports
