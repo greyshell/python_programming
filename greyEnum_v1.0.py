@@ -266,7 +266,7 @@ def portScan(ip_address):
          		ports.append(port) 
 	 		serv_dict[service] = ports 
 	
-	exit(0)
+
 	# Setting FLAGS
 	smb_flag = 'true'
 	
