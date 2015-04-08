@@ -4,6 +4,8 @@
 # Acknowledge to Mike Czumak's basic reconscan script
 
 # Note: Provide ip address inside targets.txt
+# Download vulscan/vulscan.nse shared by Sathish Arthar from below link
+# Link: http://www.computec.ch/projekte/vulscan/download/nmap_nse_vulscan-2.0.tar.gz
 
 import subprocess
 import multiprocessing
@@ -17,6 +19,7 @@ def multProc(targetin, scanip, port, path):
 	p = multiprocessing.Process(target=targetin, args=(scanip,port, path))
 	jobs.append(p)
 	p.start()
+
 	return
 
 
@@ -24,9 +27,10 @@ def safeBlock(CMD):
 	try:
 		results = subprocess.check_output(CMD, shell=True)
 	except:
-		print '\nINFO: Exception occured during execution but handled gracefully'
+		print '\n[+] INFO: Exception occured during execution but handled gracefully'
 		results = 'ERROR'
 	finally:
+
 		return results
 	
 
@@ -37,78 +41,96 @@ def unicornPortProcessing(results):
 		temp = line[26:31]
 		p = temp.strip()
 		port_all = port_all + ',' + p
+
 	return port_all
 
 
 def httpEnum(ip_address, port, path):
-	print "\nINFO: Detected http on " + ip_address + ":" + port
-	print "\nINFO: Running nse http scripts for " + ip_address 
+	print "\n[+] INFO: Detected http on " + ip_address + ":" + port
+	print "\n[+] INFO: Running nse http scripts for " + ip_address 
 	CMD = "nmap -sV -Pn -p %s --script=http-enum,http-vhosts,http-userdir-enum,http-apache-negotiation,http-backup-finder,http-config-backup,http-default-accounts,http-email-harvest,http-methods,http-method-tamper,http-passwd,http-robots.txt,http-iis-webdav-vuln,http-vuln-cve2009-3960,http-vuln-cve2010-0738,http-vuln-cve2011-3368,http-vuln-cve2012-1823,http-vuln-cve2013-0156,http-waf-detect,http-waf-fingerprint -oN '%s/%s_nse_http_%s_result.txt' %s" % (port, path, ip_address, port, ip_address)
 	print CMD	
-	results = safeBlock(CMD)	
+	results = safeBlock(CMD)
+
+	print "\n[+] INFO: Running nse-http compiled vulnscan scripts for " + ip_address 
+	CMD = "nmap -sV -Pn -p %s --script=vulscan/vulscan.nse -oN '%s/%s_nse_http-VULSCAN_%s_result.txt' %s" % (port, path, ip_address, port, ip_address)
+	print CMD
+	results = safeBlock(CMD)
+		
 	return
 
 
 def httpsEnum(ip_address, port, path):
-	print "\nINFO: Detected https on " + ip_address + ":" + port	
-	print "\nINFO: Running nse https scripts for " + ip_address 
+	print "\n[+] INFO: Detected https on " + ip_address + ":" + port	
+	print "\n[+] INFO: Running nse https scripts for " + ip_address 
 	CMD = "nmap -sV -Pn -p %s --script=http-enum,http-vhosts,http-userdir-enum,http-apache-negotiation,http-backup-finder,http-config-backup,http-default-accounts,http-email-harvest,http-methods,http-method-tamper,http-passwd,http-robots.txt,http-iis-webdav-vuln,http-vuln-cve2009-3960,http-vuln-cve2010-0738,http-vuln-cve2011-3368,http-vuln-cve2012-1823,http-vuln-cve2013-0156,http-waf-detect,http-waf-fingerprint,ssl-enum-ciphers,ssl-known-key -oN '%s/%s_nse_https_%s_result.txt' %s" % (port, path, ip_address, port, ip_address)
 	print CMD	
 	results = safeBlock(CMD)
+
+	print "\n[+] INFO: Running nse-http compiled vulnscan scripts for " + ip_address 
+	CMD = "nmap -sV -Pn -p %s --script=vulscan/vulscan.nse -oN '%s/%s_nse_http-VULSCAN_%s_result.txt' %s" % (port, path, ip_address, port, ip_address)
+	print CMD
+	results = safeBlock(CMD)
+	
 	return
 
 
 def mySqlEnum(ip_address, port, path):
-	print "\nINFO: Detected mySql on " + ip_address + ":" + port
-	print "\nINFO: Running nse mySql scripts for " + ip_address 
+	print "\n[+] INFO: Detected mySql on " + ip_address + ":" + port
+	print "\n[+] INFO: Running nse mySql scripts for " + ip_address 
 	CMD = "nmap -sV -Pn -p %s --script=mysql-empty-password,mysql-vuln-cve2012-2122 -oN '%s/%s_nse_mysql_%s_result.txt' %s" % (port, path, ip_address, port, ip_address)
 	print CMD	
-	results = safeBlock(CMD)	
+	results = safeBlock(CMD)
+	
 	return
 
 
 
 def smtpEnum(ip_address, port, path):
-	print "\nINFO: Detected smtp on " + ip_address + ":" + port
-	print "\nINFO: Running nse SMTP  scripts for " + ip_address 
+	print "\n[+] INFO: Detected smtp on " + ip_address + ":" + port
+	print "\n[+] INFO: Running nse SMTP  scripts for " + ip_address 
 	CMD = "nmap -Pn -sV -p 25,465,587 --script=smtp-commands,smtp-vuln-cve2010-4344,smtp-vuln-cve2011-1764 -oN '%s/%s_nse_smtp_%s_result.txt' %s --open" % (path, ip_address, port, ip_address)
 	print CMD	
-	results = safeBlock(CMD)	
+	results = safeBlock(CMD)
+	
 	return
 
 
 def ntpEnum(ip_address, port, path):
-	print "\nINFO: Detected NTP on " + ip_address + ":" + port
-	print "\nINFO: Running nse NTP  scripts for " + ip_address 
+	print "\n[+] INFO: Detected NTP on " + ip_address + ":" + port
+	print "\n[+] INFO: Running nse NTP  scripts for " + ip_address 
 	CMD = "nmap -Pn -sU -p 123 --script=ntp-info -oN '%s/%s_nse_ntp_result.txt' %s" % (path, ip_address, ip_address)
 	print CMD	
 	results = safeBlock(CMD)
+
 	return
 
 
 def rdpEnum(ip_address, port, path):
-	print "\nINFO: Detected test on " + ip_address + ":" + port
-	print "\nINFO: Running nse RDP  scripts for " + ip_address 
+	print "\n[+] INFO: Detected test on " + ip_address + ":" + port
+	print "\n[+] INFO: Running nse RDP  scripts for " + ip_address 
 	CMD = "nmap -Pn -sV -p %s --script=rdp-enum-encryption -oN '%s/%s_nse_rdp_result.txt' %s" % (port, path, ip_address, ip_address)
 	print CMD	
 	results = safeBlock(CMD)
+
 	return
 
 
 def ftpEnum(ip_address, port, path):
-	print "\nINFO: Detected ftp on " + ip_address + ":" + port
+	print "\n[+] INFO: Detected ftp on " + ip_address + ":" + port
 	
-	print "\nINFO: Performing nmap FTP script scan for " + ip_address + ":" + port
+	print "\n[+] INFO: Performing nmap FTP script scan for " + ip_address + ":" + port
 	FTPSCAN = "nmap -sV -Pn -p %s --script=ftp-anon,ftp-bounce,ftp-libopie,ftp-proftpd-backdoor,ftp-vsftpd-backdoor,ftp-vuln-cve2010-4221 %s > %s/%s_%s_nsc_ftp.txt" % (port, ip_address, path, ip_address, port)
 	print FTPSCAN
-	results = safeBlock(FTPSCAN)	
+	results = safeBlock(FTPSCAN)
+	
 	return
 
 
 def smbEnum(ip_address, port, path):
-	print "INFO: Detected SMB on " + ip_address
+	print "[+] INFO: Detected SMB on " + ip_address
 
-	print "\nINFO: Performing nbtscan scan for " + ip_address
+	print "\n[+] INFO: Performing nbtscan scan for " + ip_address
 	NBT = "nbtscan -r %s >> %s/%s_nbtscan.txt" % (ip_address, path, ip_address)
 	print NBT
 	results = safeBlock(NBT)
@@ -116,22 +138,23 @@ def smbEnum(ip_address, port, path):
 	print NBT
 	results = safeBlock(NBT)
 	
-	print "\nINFO: Performing linux4enum for " + ip_address
+	print "\n[+] INFO: Performing linux4enum for " + ip_address
 	LNX = "enum4linux -a %s >> %s/%s_linux4enum.txt" % (ip_address, path, ip_address)
 	print LNX
 	results = safeBlock(LNX)
-	
-	print "\nINFO: Performing smb-check-vulns.nse for " + ip_address
+
+	print "\n[+] INFO: Performing smb-check-vulns.nse for " + ip_address
 	CMD = "nmap -Pn -sU -sS -pT:139,445,U:137 --script=nbstat,samba-vuln-cve-2012-1182,smb-enum-domains,smb-system-info,smb-vuln-ms10-054,smb-vuln-ms10-061,smbv2-enabled -oN '%s/%s_nse_smb_result.txt' %s --open" % (path, ip_address, ip_address)
 	print CMD
-	results = safeBlock(CMD)	
+	results = safeBlock(CMD)
+	
 	return
 
 
 def snmpEnum(ip_address, port, path):
-	print "INFO: Detected snmp on " + ip_address + ":" + port
+	print "[+] INFO: Detected snmp on " + ip_address + ":" + port
 	key = 'public'
-	print "\nINFO: Running nse script to find snmp community string " + ip_address 
+	print "\n[+] INFO: Running nse script to find snmp community string " + ip_address 
 	CMD = "nmap -Pn -sU -p 161,162 %s --open --script snmp-brute --script-args snmp-brute.communitiesdb=/usr/share/metasploit-framework/data/wordlists/snmp_default_pass.txt -oN '%s/%s_snmp_nse_result.txt'" % (ip_address, path, ip_address)
 	print CMD	
 	results = safeBlock(CMD)
@@ -145,10 +168,11 @@ def snmpEnum(ip_address, port, path):
 			print "[*] Valid snmp community string found through brute force: " + k
 			key = k
 		
-	print "\nINFO: Running snmpcheck " + ip_address 
+	print "\n[+] INFO: Running snmpcheck " + ip_address 
 	CMD = "snmpcheck -c %s -t %s >> %s/%s_snmpcheck.txt" % (key, ip_address, path, ip_address)
 	print CMD
 	results = safeBlock(CMD)
+
 	return
 
 
@@ -171,13 +195,13 @@ def portScan(ip_address):
 
 	path = path + '/' + ip_address + '_enum_results'
 
-	print "\nINFO: Performing xprobe2 OS scan for " + ip_address
+	print "\n[+] INFO: Performing xprobe2 OS scan for " + ip_address
 	XPROBE = "xprobe2 %s > %s/%s_xprobe_os.txt" % (ip_address, path, ip_address)
 	print XPROBE
 	results = safeBlock(XPROBE)
 
-	print "\nINFO: Running unicorn TCP all port scan for " +ip_address
-	UNICORNTCP_ALL = "unicornscan %s:1-65535" %ip_address
+	print "\n[+] INFO: Running unicorn TCP all port scan for " +ip_address
+	UNICORNTCP_ALL = "unicornscan -m T %s:1-65535" %ip_address
 	print UNICORNTCP_ALL
 	results = safeBlock(UNICORNTCP_ALL)
 
@@ -188,14 +212,21 @@ def portScan(ip_address):
 	f.close
 
 	all_ports = unicornPortProcessing(results)
-	all_ports = all_ports[2:-1]
-		
-	print "\nINFO: Running nmap TCP scan for " + ip_address
-	# nmap scans particular TCP ports that has been already identified by unicornscan
-	TCPSCAN = "nmap -vv -Pn -A -sC -sS -T 4 -p %s -oN '%s/%s_nmap_tcp_all.txt' %s --open" % (all_ports, path, ip_address, ip_address)
-
-	print TCPSCAN
-	results = safeBlock(TCPSCAN)				
+	all_ports = all_ports[2:-1]			
+	
+	if all_ports == "":
+		print "\n[+] INFO: Running independent nmap TCP scan for " + ip_address
+		# nmap scans particular TCP ports that has been already identified by unicornscan
+		TCPSCAN = "nmap -vv -Pn -A -sC -sS -T 3 --top-ports 2000 -oN '%s/%s_nmap_tcp_all.txt' %s --open" % (path, ip_address, ip_address)
+		print TCPSCAN
+		results = safeBlock(TCPSCAN)
+	else:
+		print "\n[+] INFO: Running nmap TCP scan for " + ip_address
+		# nmap scans particular TCP ports that has been already identified by unicornscan
+		TCPSCAN = "nmap -vv -Pn -A -sC -sS -T 3 -p %s -oN '%s/%s_nmap_tcp_all.txt' %s --open" % (all_ports, path, ip_address, ip_address)
+		print TCPSCAN
+		results = safeBlock(TCPSCAN)
+	
 	
 	# Processing TCP ports
 	lines = results.split("\n")
@@ -214,7 +245,7 @@ def portScan(ip_address):
 			serv_dict[service] = ports # add service to the dictionary along with the associated port(2)
 
 
-	print "\nINFO: Running unicorn default UDP port scan for " +ip_address
+	print "\n[+] INFO: Running unicorn default UDP port scan for " +ip_address
 	UNICORNUDP = "unicornscan -m U %s" %ip_address
 	
 	print UNICORNUDP
@@ -229,16 +260,16 @@ def portScan(ip_address):
 	uni_ports = unicornPortProcessing(results)
 	uni_ports = uni_ports[2:-1]
 
-	if uni_ports == '  ':
-		print "\nINFO: Running independent nmap UDP scan for " + ip_address
+	if uni_ports == "":
+		print "\n[+] INFO: Running independent nmap UDP scan for " + ip_address
 		# nmap scan default UDP ports
-		UDPSCAN = "nmap -vv -Pn -A -sC -sU -T 3 -oN '%s/%s_nmap_UDP.txt'  %s --open" % (path, ip_address, ip_address)
+		UDPSCAN = "nmap -vv -Pn -A -sC -sU -T 3 --top-ports 10 -oN '%s/%s_nmap_UDP.txt' %s --open" % (path, ip_address, ip_address)
 		print UDPSCAN
 		udpresults = safeBlock(UDPSCAN)
 	else:
-		print "\nINFO: Running nmap UDP scan for " + ip_address
+		print "\n[+] INFO: Running nmap UDP scan for " + ip_address
 		# nmap scans particular UDP port that has been already identified by unicornscan
-		UDPSCAN = "nmap -vv -Pn -A -sC -sU -T 3 -p %s -oN '%s/%s_nmap_udp.txt'  %s --open" % (uni_ports, path, ip_address, ip_address)
+		UDPSCAN = "nmap -vv -Pn -A -sC -sU -T 3 -p %s -oN '%s/%s_nmap_udp.txt' %s --open" % (uni_ports, path, ip_address, ip_address)
 		print UDPSCAN
 		udpresults = safeBlock(UDPSCAN)
 
@@ -259,7 +290,6 @@ def portScan(ip_address):
          		ports.append(port) 
 	 		serv_dict[service] = ports 
 	
-
 	# Setting FLAGS
 	smb_flag = 'true'
 	
