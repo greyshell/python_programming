@@ -12,5 +12,5 @@ During post exploitation, it extracts juicy information to identify possible pri
 #### winEnum.bat
 During post exploitation, it extracts juicy information to identify possible privilege escalation vectors.
 
-#### winEnum.bat
+#### winEnum_wmc_.bat
 During post exploitation, it extracts juicy information to identify possible privilege escalation vectors using `wmic`.
