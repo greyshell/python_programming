@@ -1,5 +1,5 @@
 ## Description
-`extractor.py` is multi-threaded scanner and enumerator. In stage 1, it quickly finds out all TCP open ports through asynchronous-stateless-scanner `unicornscan`. In stage 2, it feeds the result to `nmap` to fingerprint the running services. In stage 3, it enumerate deeper and extracting more information to identify the exploitation entry point.
+`extractor.py` is multi-threaded scanner and enumerator.
 
 1. Phase 1: Quickly identifies all open TCP & UDP ports through asynchronous-stateless-scanner `unicornscan`.
 2. Item 2: Feeds results to `nmap` for fingerprinting the running services.
@@ -16,4 +16,6 @@ Options:
               where each host should be separated by a new line
 
 ```
-git init && git add . && git status && git commit -m "new structure" && git push -u origin master
+
+### Dependency
+Download and copy `vulscan.zip` (compiled scripts based on cve, exploitdb, openvas) inside `/usr/share/nmap/scripts/vulscan` folder.
