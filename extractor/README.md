@@ -18,4 +18,4 @@ Options:
 ```
 
 ### Dependency
-Download and copy `vulscan.zip` (compiled scripts based on cve, exploitdb, openvas) inside `/usr/share/nmap/scripts/vulscan` folder.
+- Download and copy `vulscan.zip` (compiled scripts based on cve, exploitdb, openvas) inside `/usr/share/nmap/scripts/vulscan` folder.
