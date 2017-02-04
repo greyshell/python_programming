@@ -14,9 +14,3 @@ Options:
 
 ```
 
-### Dependency
-- Download and copy `vulscan.zip` (compiled scripts based on cve, exploitdb, openvas) inside `/usr/share/nmap/scripts/vulscan` folder.
-
-### Reference
-- `Recon Scan` : http://www.securitysift.com/offsec-pwb-oscp/
-
