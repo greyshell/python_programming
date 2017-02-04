@@ -1,8 +1,22 @@
 ## Description
-`greyEnum.py` is multi-threaded scanner and enumerator. In stage 1, it quickly finds out all TCP open ports through asynchronous-stateless-scanner `unicornscan`. In stage 2, it feeds the result to `nmap` to fingerprint the running services. In stage 3, it enumerate deeper and extracting more information to identify the exploitation entry point.
+- `lightPortScanner.py` - a simple `TCP` scanner written in python. 
+- In post exploitation phase, it helps to scan remote system's top 1000 TCP port from pivot system.
 
-#### Usage
+### Usage
 ```sh
-A TCP scanner written in python. During scanning, it uses `nmap`'s top 1000 TCP ports.
+Usage: Usage lightPortScanner.py -H <target host> -p <target port>
+
+Options:
+  -h, --help  show this help message and exit
+  -H TGTHOST  specify target host
+  -p TGTPORT  specify target port saperated by comma
+
+
 ```
+
+### Dependency
+- Download and copy `vulscan.zip` (compiled scripts based on cve, exploitdb, openvas) inside `/usr/share/nmap/scripts/vulscan` folder.
+
+### Reference
+- `Recon Scan` : http://www.securitysift.com/offsec-pwb-oscp/
 

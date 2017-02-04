@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Author: greyshell
+# author: greyshell
 
 import socket
 import optparse
@@ -26,8 +26,6 @@ def connScan(tgtHost, tgtPort):
 		
 	except Exception, e:
 		screenLock.acquire()
-		#print '[-] %d/tcp closed'% tgtPort
-		#print "[-] Error = "+str(e)
 	
 	finally:
 		screenLock.release()
@@ -60,7 +58,7 @@ def portScan(tgtHost, tgtPorts):
 
 def main():
 	
-	# Adding parser functionality
+	# adding parser functionality
 	parser = optparse.OptionParser('Usage %prog -H' + ' <target host> -p <target port>')
 
 	parser.add_option('-H', dest='tgtHost', type='string', help='specify target host')
