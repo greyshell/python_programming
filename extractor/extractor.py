@@ -358,7 +358,7 @@ if __name__=='__main__':
 	parser = optparse.OptionParser('python %prog -H' + ' <target host>')
 
 	parser.add_option('-H', dest='host', type='string', help='specify target host')
-	parser.add_option('-M', dest='targets', type='string', help='provide a text file (i.e. targets.txt) to scan multiple hosts where each host should be saparated by a new line')
+	parser.add_option('-M', dest='targets', type='string', help='provide a text file (i.e. targets.txt) to scan multiple hosts where each host should be separated by a new line')
 	
 	(options, args) = parser.parse_args()
 
