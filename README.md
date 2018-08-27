@@ -1,4 +1,5 @@
 ### Description
-This repo is created for pen testing activity.
+	- solving leetcode problems
+	- learning network / system/ crypto
 
 
