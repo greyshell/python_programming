@@ -24,36 +24,37 @@ return [0, 1].
 """
 
 
-class Solution(object):
+def two_sum(nums, target):
+    """
+    description: time complexity: O(n), space complexity: O(n)
+    :param nums: List[int]
+    :param target: intindices
+    :return: List[int]
+    """
+    # create an empty dictionary
+    hash_table = {}
 
-    def two_sum(self, nums, target):
-        """
-        description: time complexity: O(n), space complexity: O(n)
-        :param nums: List[int]
-        :param target: int
-        :return: List[int]
-        """
-        # create an empty dictionary
-        hash_map = {}
+    for index, n in enumerate(nums):
+        complement = target - n
+        # if the complement is not present in hash_table then insert the number as key, index as value
+        if complement not in hash_table:
+            hash_table[n] = index
 
-        for index, n in enumerate(nums):
-            complement = target - n
-            # if the complement is not present in hash_map then insert the number as key, index as value
-            if complement not in hash_map:
-                hash_map[n] = index
+        else:  # if found the complement in the hash_table then pick up the previous index
+            prev_index = hash_table[complement]
+            return [prev_index, index]
 
-            else:  # if found the complement in the hash_map then pick up the previous index
-                prev_index = hash_map[complement]
-                return [prev_index, index]
-
-        # condition where target not found
-        return [None, None]
+    # condition where target not found
+    return
 
 
 def main():
-    s = Solution()
-    print s.two_sum([12, 7, 11, 15], 18)
-    print s.two_sum([], 9)
+    a = two_sum([12, 7, 11, 15], 19)
+    if a:
+        print "[+] indices are :"
+        print a
+    else:
+        print "[x] sum not found"
 
 
 if __name__ == '__main__':
