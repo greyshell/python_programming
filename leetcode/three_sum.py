@@ -33,7 +33,7 @@ def solution(num, target_sum):
     """
     lookup = {}
 
-    # a + b = (sum - c)
+    # logic  => a + b = (sum - c)
     # store combination of all sums of two numbers in a dictionary, key = sum , number = list => two indexes
     for i in range(0, len(num)):
         for j in range(i + 1, len(num)):
