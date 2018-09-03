@@ -5,7 +5,7 @@
 """
 [+] problem description
 =======================
-
+tower of hanoi
 
 [+] reference
 =============
@@ -18,7 +18,6 @@ class Solution(object):
 
     def toh(self, n, x, y, z):
         """
-        tower of hanoi
         time complexity: O(2^(n+1) -1 ) ~ O(2^n)
         space complexity: O(n-1)
         nos of recursive function invocation: 2^n - 1,  considering the base case => I(n) = 1 where n = 1
