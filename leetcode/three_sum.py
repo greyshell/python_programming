@@ -24,7 +24,7 @@ return [0, 1, 2]
 """
 
 
-def solution(num, target_sum):
+def three_sum(num, target_sum):
     """
     time complexity: O(n^2), space complexity: O(n)
     :param num: List[int]
@@ -59,8 +59,7 @@ def solution(num, target_sum):
 
 
 def main():
-
-    a = solution([2, 7, 11, 15], 20)
+    a = three_sum([2, 7, 11, 15], 20)
     if a:
         print "[+] indices are :"
         print a
