@@ -10,6 +10,7 @@ tower of hanoi
 [+] reference
 =============
 http://interactivepython.org/runestone/static/pythonds/Recursion/TowerofHanoi.html
+Data Structures and Algorithm Made Easy by Narasimha, page 38
 
 """
 
@@ -27,7 +28,7 @@ def toh(n, x, y, z):
     :param z: char
     :return: None
     """
-    if n == 1:  # improve the nos of function invocation
+    if n == 1:  # improve the nos of function invocation by eliminating n > = 0 condition
         print "[+] move disk from %s to %s" % (x, y)
     elif n > 1:
         toh(n - 1, x, z, y)
@@ -38,7 +39,7 @@ def toh(n, x, y, z):
 
 
 def main():
-    toh(3, 'x', 'y', 'z')
+    toh(2, 'x', 'y', 'z')
     # toh(5, 'x', 'y', 'z')
 
 
