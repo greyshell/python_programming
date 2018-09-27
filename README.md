@@ -1,5 +1,5 @@
 ### Description
 	- solving leetcode problems
-	- learning network, system, crypto coding
+	- learning network, system, crypto programming
 
 
