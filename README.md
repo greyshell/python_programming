@@ -1,5 +1,7 @@
-### Description
-	- solving leetcode problems
-	- learning network, system, crypto programming
+## Description
+
+- solving leetcode problems
+- learning system, network, crypto programming
+- boilerplate solutions
 
 
