@@ -1,7 +1,7 @@
 ## Description
 
 - solving leetcode problems
-- learning system, network, crypto programming
-- boilerplate solutions
+- learning system, network, web, crypto programming
+- preparing boilerplate solutions
 
 
