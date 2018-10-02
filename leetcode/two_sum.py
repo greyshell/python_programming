@@ -9,8 +9,7 @@ Given an array of integers, return indices of the two numbers such that they add
 
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
 
-[+] example
-===========
+Example:
 
 Given nums = [2, 7, 11, 15], target = 9,
 
@@ -26,35 +25,49 @@ return [0, 1].
 
 def two_sum(nums, target):
     """
-    description: time complexity: O(n), space complexity: O(n)
+    approach:
+        - scan the list and check the complement (sum - number) in a hash table
+        - if not found then insert the entry(key -> number, value -> index) into the hash table
+        - if found then prepare a list [current index, index of the complement]
+
+    time complexity: O(n)
+    space complexity: O(n) -> size of the hash table
+
     :param nums: List[int]
-    :param target: intindices
+    :param target: int
     :return: List[int]
     """
-    # create an empty dictionary
-    hash_table = {}
+    lookup = {}
 
-    for index, n in enumerate(nums):
+    # use enumerate() to track the index
+    for i, n in enumerate(nums):
         complement = target - n
-        # if the complement is not present in hash_table then insert the number as key, index as value
-        if complement not in hash_table:
-            hash_table[n] = index
 
-        else:  # if found the complement in the hash_table then pick up the previous index
-            prev_index = hash_table[complement]
-            return [prev_index, index]
+        # if complement is not in dictionary then insert
+        if complement not in lookup:
+            lookup[n] = i
 
-    # condition where target not found
+        # if found the complement then pick up index of that found complement
+        else:
+            index = lookup[complement]
+            return [index, i]
+
+    # when target sum is not found, function implicit returns None
     return
 
 
 def main():
-    a = two_sum([12, 7, 11, 15], 19)
-    if a:
-        print "[+] indices are :"
-        print a
-    else:
-        print "[x] sum not found"
+    # program input
+    input_list = [12, 7, 11, 15, 35]
+    target_sum = 50
+
+    print "[+] given list: ", input_list
+    print "[+] given sum: ", target_sum
+
+    out = two_sum(input_list, target_sum)
+
+    # program output
+    print "[+] output:", out
 
 
 if __name__ == '__main__':

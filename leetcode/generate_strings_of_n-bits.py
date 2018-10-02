@@ -21,9 +21,9 @@ def generate_strings_of_n_bits(low, high):
     generate all binary strings of n-bits through backtracking (exploring all possibilities)
     time complexity: O(2^n)
     space complexity: O(2^n) => max length of the list / array
-    :param low: number
-    :param high: number
-    :return: void
+    :param low: int
+    :param high: int
+    :return: None
     """
     # declare to use global variables
     global my_global_array
