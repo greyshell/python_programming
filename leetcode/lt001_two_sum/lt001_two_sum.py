@@ -52,7 +52,7 @@ def two_sum(nums, target_sum):
             return [index, i]
 
     # when target_sum sum is not found, function implicit returns None
-    return None
+    return
 
 
 def main():
