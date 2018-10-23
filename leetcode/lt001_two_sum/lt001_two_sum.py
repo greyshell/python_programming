@@ -7,7 +7,7 @@
 =======================
 Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You may assume that each input would have exactly one two_sum, and you may not use the same element twice.
 
 Example:
 
@@ -23,25 +23,25 @@ return [0, 1].
 """
 
 
-def two_sum(nums, target):
+def two_sum(nums, target_sum):
     """
     approach:
         - scan the list and check the complement (sum - number) in a hash table
         - if not found then insert the entry(key -> number, value -> index) into the hash table
-        - if found then prepare a list [current index, index of the complement]
+        - if found then prepare a list [current index, index of the complement] and return
 
     time complexity: O(n)
     space complexity: O(n) -> size of the hash table
 
     :param nums: List[int]
-    :param target: int
-    :return: List[int]
+    :param target_sum: int
+    :return: List[int] / None
     """
     lookup = {}
 
     # use enumerate() to track the index
     for i, n in enumerate(nums):
-        complement = target - n
+        complement = target_sum - n
 
         # if complement is not in dictionary then insert
         if complement not in lookup:
@@ -52,22 +52,18 @@ def two_sum(nums, target):
             index = lookup[complement]
             return [index, i]
 
-    # when target sum is not found, function implicit returns None
-    return
+    # when target_sum sum is not found, function implicit returns None
+    return None
 
 
 def main():
-    # program input
+    """
+    driver code to
+    :return:
+    """
     input_list = [12, 7, 11, 15, 35]
     target_sum = 50
-
-    print "[+] given list: ", input_list
-    print "[+] given sum: ", target_sum
-
-    out = two_sum(input_list, target_sum)
-
-    # program output
-    print "[+] output:", out
+    print two_sum(input_list, target_sum)
 
 
 if __name__ == '__main__':

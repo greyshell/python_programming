@@ -6,8 +6,8 @@
 [+] problem description
 =======================
 find the factorial of a number
-1) recursive solution
-2) tail recursive solution
+1) recursive two_sum
+2) tail recursive two_sum
 
 
 [+] reference
@@ -19,7 +19,7 @@ TBD
 
 def tail_recursion_driver(n):
     """
-    tail recursive solution
+    tail recursive two_sum
     :param n: int
     :return: int
     """
@@ -41,7 +41,7 @@ def factorial_tail_recursion(n, a):
 
 def factorial(n):
     """
-    normal recursive solution
+    normal recursive two_sum
     :return: int
     """
     if n == 1 or n == 0:  # base case for n = 0, 1
