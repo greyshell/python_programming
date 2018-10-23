@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# author: greyshell
+
 import unittest
 import lt001_two_sum as s
 
