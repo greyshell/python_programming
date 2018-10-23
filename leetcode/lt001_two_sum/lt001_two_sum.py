@@ -58,7 +58,7 @@ def two_sum(nums, target_sum):
 
 def main():
     """
-    driver code to
+    quick test the solution
     :return:
     """
     input_list = [12, 7, 11, 15, 35]

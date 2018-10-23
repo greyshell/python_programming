@@ -5,7 +5,7 @@ import lt001_two_sum as s
 class TestSolution(unittest.TestCase):
     def test_two_sum(self):
         """
-        verify the solution
+        verify the correctness of the solution
         :return:
         """
         self.assertEquals(s.two_sum([12, 7, 11, 15, 35], 50), [3, 4])
