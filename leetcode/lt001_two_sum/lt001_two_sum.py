@@ -56,9 +56,11 @@ def two_sum(nums, target_sum):
 
 
 def main():
+    # sample input
     input_list = [12, 7, 11, 15, 35]
     target_sum = 50
-    print two_sum(input_list, target_sum)
+
+    print two_sum(input_list, target_sum)  # result: [3, 4]
 
 
 if __name__ == '__main__':
