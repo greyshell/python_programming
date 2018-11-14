@@ -73,7 +73,9 @@ def tuple_playground():
 
 
 def test_custom_sorting():
-    # print CustomSort.selection_sort([5, 4, 3, 2, 1])
+    print CustomSort.selection_sort([5, 40, 3, 260, 1])
+    # print help(CustomSort.counting_sort)
+    print CustomSort.counting_sort([-5, 40, -3, -260, 1], -260, 40)
     print CustomSort.bubble_sort([5, 40, 3, 260, 1])
 
 

@@ -12,6 +12,68 @@ class CustomSort:
         pass
 
     @staticmethod
+    def counting_sort(my_list, lower, upper):
+        """
+        counting sort
+
+        :param my_list: given input list, type(int)
+        :param lower: lower element present in the list, type(int)
+        :param upper: upper element present in the list, type(int)
+        :return:    new output list having same size of the input list, type(int)
+                    return None when input(list / range) is not valid
+
+
+        features:
+            1) not a comparison based sort algorithm
+            2) assumes: each of the elements is an integer in the range(k) -> lower to upper
+            3) stable sort as it preserves the relative ordering. useful for sorting satellite records
+            4) disadvantage: algorithm won't work if appears any number / key beyond the given range
+
+        time complexity:
+            1) best case: O(n + k) -> where k = range -> (upper - lower), n = input size
+                and k = O(n)
+            2) worst case: when k / range increases in such way that k = O(n^2) or O(n^3) ..
+            3) average case: O(n + k)
+
+        space complexity:
+            1) worst case: O(n + k)
+                - O(n) -> storing sorted element in a new list
+                - O(k) -> counting array / list holding frequency of each elements
+                - when range(k) increases then amount of space required increase
+
+        """
+        for i in my_list:
+            if i > upper or i < lower:
+                print "[x] list element is out of the range .."
+                return None
+
+        my_range = (upper - lower) + 1
+        # initialize with zero
+        count_list = [0 for _ in range(0, my_range)]
+
+        # count the frequency of each element
+        for i in range(0, len(my_list)):
+            e = my_list[i]
+            index = (e - lower)  # as we are starting from 0th index
+            count_list[index] += 1
+
+        # increment the frequency with previous frequency
+        for i in range(1, len(count_list)):
+            count_list[i] += count_list[i - 1]
+
+        # creating and initializing the output_list
+        output_list = [0 for _ in range(0, len(my_list))]
+
+        for i in range(len(my_list), 0, -1):
+            e = my_list[i - 1]
+            index = count_list[e - lower]
+            output_list[index - 1] = e
+            # decrement the count
+            count_list[e - lower] -= 1
+
+        return output_list
+
+    @staticmethod
     def selection_sort(my_list):
         """
         selection sort -> as it repeatedly selects the smallest element
@@ -102,7 +164,7 @@ class CustomSort:
 
 
         :param my_list: int
-        :return: my_list[int]
+        :return: my_list: int
         """
         swapped = True
         i = len(my_list) - 1
@@ -127,8 +189,9 @@ def main():
     :return:
     """
     a = CustomSort()
-    print a.selection_sort([2, 1, 5, 3, 6, 12, 10, 14, 100])
-    print a.bubble_sort([2, 1, 5, 300, 600, 12, 10, 14, 100])
+    # print a.selection_sort([2, 1, 5, 3, 6, 12, 10, 14, 100])
+    # print a.bubble_sort([2, 1, 5, 300, 600, 12, 10, 14, 100])
+    print a.counting_sort([5, 2, 5, 1, 3, 2, 4], 1, 5)
 
 
 if __name__ == '__main__':
