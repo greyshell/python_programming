@@ -1,18 +1,13 @@
-#!/usr/bin/python
-# author: greyshell
-
-"""
-custom lib for searching
-
-"""
+#!/usr/bin/env python
 
 
 class BinarySearch:
-    def __init__(self):
-        pass
+    """
+    implementation of binary search
+    """
 
     @staticmethod
-    def iterative(mylist, item):
+    def iterative_approach(mylist, item):
         # low and high keep track of which part of the mylist you'll search in.
         low = 0
         high = len(mylist) - 1
@@ -34,13 +29,3 @@ class BinarySearch:
 
         # item doesn't exist
         return None
-
-
-def main():
-    my_list = [1, 3, 5, 7, 9]
-    a = BinarySearch()
-    print(a.iterative(my_list, 3))  # result: 1
-    print(a.iterative(my_list, -1))  # result: None
-
-if __name__ == '__main__':
-    main()

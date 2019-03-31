@@ -1,15 +1,10 @@
-#!/usr/bin/python
-# author: greyshell
-
-"""
-custom lib for sorting
-
-"""
+#!/usr/bin/env python
 
 
 class CustomSort:
-    def __init__(self):
-        pass
+    """
+    implement different sorting algorithm
+    """
 
     @staticmethod
     def counting_sort(my_list, lower, upper):
@@ -25,26 +20,28 @@ class CustomSort:
 
         features:
             1) not a comparison based sort algorithm
-            2) assumes: each of the elements is an integer in the range(k) -> lower to upper
+            2) assumption: each of the elements is an integer in the range(k) -> lower to upper
             3) stable sort as it preserves the relative ordering. useful for sorting satellite records
             4) disadvantage: algorithm won't work if appears any number / key beyond the given range
+            5) it is often used as a sub-routine to another sorting algorithm like radix sort.
 
         time complexity:
             1) best case: O(n + k) -> where k = range -> (upper - lower), n = input size
                 and k = O(n)
             2) worst case: when k / range increases in such way that k = O(n^2) or O(n^3) ..
+                example: for small n, k = 1 -> 1000
             3) average case: O(n + k)
 
         space complexity:
             1) worst case: O(n + k)
                 - O(n) -> storing sorted element in a new list
                 - O(k) -> counting array / list holding frequency of each elements
-                - when range(k) increases then amount of space required increase
+                - when range(k) increases then amount of space required increase (k = 1 -> 1000)
 
         """
         for i in my_list:
             if i > upper or i < lower:
-                print "[x] list element is out of the range .."
+                # list element is out of the range
                 return None
 
         my_range = (upper - lower) + 1
@@ -113,7 +110,7 @@ class CustomSort:
         minimum and maximum values in the list in every pass. This reduces the number of scans of the list by a
         factor of 2, eliminating some loop overhead but not actually decreasing the number of comparisons or swaps.
         Note, however, that cocktail sort more often refers to a bidirectional variant of bubble sort. Sometimes this
-        is double selection sort.
+        is called double selection sort.
 
         4) selection sort is efficient on small list / array
 
@@ -181,18 +178,3 @@ class CustomSort:
                 j += 1
             i -= 1
         return my_list
-
-
-def main():
-    """
-    driver code to test the functionality
-    :return:
-    """
-    a = CustomSort()
-    # print a.selection_sort([2, 1, 5, 3, 6, 12, 10, 14, 100])
-    # print a.bubble_sort([2, 1, 5, 300, 600, 12, 10, 14, 100])
-    print a.counting_sort([5, 2, 5, 1, 3, 2, 4], 1, 5)
-
-
-if __name__ == '__main__':
-    main()
