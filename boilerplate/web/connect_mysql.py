@@ -43,7 +43,7 @@ class ConnectMySQL:
             if fix is True:
                 # white list validation: regex and length
                 # use parametrised query
-                # query = "SELECT * FROM auth_permission WHERE id = %s" % book_id
+                # query = "SELECT * FROM auth_permission WHERE id = %s_list" % book_id
                 temp_book_id = (book_id,)
                 query = 'SELECT * FROM auth_permission WHERE id = ?' + temp_book_id
             else:

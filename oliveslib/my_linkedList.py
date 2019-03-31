@@ -92,6 +92,14 @@ class SinglyLinkedList:
             prev.next = curr.next
             curr.next = None
 
+    def remove_all(self):
+        """
+        empty the list
+        :return:
+        """
+        # just set the head to None
+        self.head = None
+
     def reverse(self):
         """
         Reverse the list in-place.
@@ -106,16 +114,26 @@ class SinglyLinkedList:
             curr = next_node
         self.head = prev_node
 
-    def reverse_n(self):
-        def reverse_recursion(n):
-            if n.next is None:
-                return n
-            first_n = n
-            last_n = reverse_recursion(n.next)
-            n.next.next = first_n
-            n.next = None
-            return last_n
-        self.head = reverse_recursion(self.head)
+    def recursive_reverse(self):
+        """
+        reverse the list in-place. Takes O(n) time.
+        not swapping the element
+        """
+        def reverse(curr):
+            """
 
-    def cleanup(self):
-        self.head = None
+            :return: node
+            """
+            if curr.next is None:  # until reach the last node
+                return curr
+
+            # swap the 2nd last node and last node
+            first_n = curr
+            last_n = reverse(curr.next)
+
+            curr.next.next = first_n
+            curr.next = None
+            return last_n
+
+        # set the head to the last node
+        self.head = reverse(self.head)
