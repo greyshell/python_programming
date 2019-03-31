@@ -1,3 +1,6 @@
+## Best Coding Practice
+
+```
 #!/usr/bin/python
 # author: greyshell
 
@@ -89,3 +92,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+```
