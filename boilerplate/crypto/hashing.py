@@ -2,14 +2,18 @@
 
 # author: greyshell
 
-import hashlib
-
-import bcrypt
-from colorama import Fore
 import binascii
+import hashlib
+import bcrypt
+
+from colorama import Fore
 
 
 def demo_hashlib():
+    """
+    understanding hashlib functions
+    :return:
+    """
     print(Fore.MAGENTA, f"[+] usage of hashlib library:")
     print(Fore.WHITE)
     print(Fore.CYAN, f"algorithms available: ")
@@ -46,6 +50,10 @@ def demo_hashlib():
 
 
 def demo_bcrypt():
+    """
+    understanding bcrypt functions
+    :return:
+    """
     print(f"\n demo bcrypt:")
     password = "abhijit"  # a string, need to convert it to byte
     salt = bcrypt.gensalt()
