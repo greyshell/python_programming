@@ -5,6 +5,7 @@
 import binascii
 import hashlib
 import bcrypt
+from base64 import b64decode, b64encode
 
 from colorama import Fore
 
@@ -30,21 +31,36 @@ def demo_hashlib():
         result = hashlib.new(h, message.encode()).hexdigest()
         print(f"{h} => {result}")
 
+    print(Fore.WHITE)
+    # alternate method: efficient and faster than new()
+    result = hashlib.sha512(message.encode()).hexdigest()
+    print(Fore.BLUE, f"sha512_256 using constructor  => {result}")
+
     # variable length digest
     print(Fore.WHITE)
-    r = hashlib.new('shake_256', message.encode()).hexdigest(32)
-    print(Fore.BLUE, f"shake_256 => {r}")
+    result = hashlib.shake_256(message.encode()).hexdigest(32)
+    print(Fore.BLUE, f"shake_256 => {result}")
 
-    # key derivation and stretching -> need to provide positional arguments
+    # key derivation and stretching
     print(Fore.WHITE)
     dk = hashlib.pbkdf2_hmac(hash_name='sha256', password=b'password', salt=b'salt', iterations=100000, dklen=None)
     result = binascii.hexlify(dk)
     print(Fore.LIGHTRED_EX, f"pkbf2_hmac key derivation:  {result}")
 
-    # need to provide positional arguments
+    # key derivation through scrypt
     r = hashlib.scrypt(password=b'password', salt=b'salt', n=4, r=32, p=1, maxmem=0, dklen=64)
     result = binascii.hexlify(r)
     print(Fore.GREEN, f"scrypt key derivation:  {result}")
+
+    # use of blake2b
+    result = hashlib.blake2b(message.encode(), digest_size=20, key=b"", salt=b"", person=b"").hexdigest()
+    print(Fore.LIGHTGREEN_EX, f"blake2:  {result}")
+
+    # key derivation through blake -> derive two keys from a single key
+    orig_key = b64decode(b'Rm5EPJai72qcK3RGBpW3vPNfZy5OZothY+kHY6h21KM=')
+    enc_key = hashlib.blake2s(key=orig_key, person=b'kEncrypt').hexdigest()
+    mac_key = hashlib.blake2s(key=orig_key, person=b'kMAC').hexdigest()
+    print(Fore.BLUE, f"example key derivation through blacke2b-> key1:  {enc_key}, key2: {mac_key}")
 
     return
 
@@ -84,6 +100,7 @@ def demo_bcrypt():
     hashed = bcrypt.hashpw(h, salt)  #
     print(Fore.WHITE, f"hash for long password (more than 72 chars): {hashed.decode()}")
 
+    # generate private / secret key from a password
     password = "a"
     private_key = bcrypt.kdf(password.encode(), salt, desired_key_bytes=32, rounds=100)
 
@@ -96,7 +113,7 @@ def main():
     :return:
     """
     demo_hashlib()
-    # demo_bcrypt()
+    demo_bcrypt()
 
 
 if __name__ == '__main__':
