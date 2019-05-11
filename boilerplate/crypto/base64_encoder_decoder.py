@@ -5,8 +5,8 @@
 
 import argparse
 import sys
+
 import base64
-import re
 
 from colorama import Fore
 
@@ -21,38 +21,6 @@ class UserInput:
         self.group.add_argument("-d", "--decode", metavar="", help="provide the cipher to decode")
 
 
-class Base64Encoding:
-    """
-    implementation of base64 encoding / decoding
-    """
-
-    @staticmethod
-    def encode(text):
-        # convert the string to byte
-        data = text.encode()
-        # perform the base64 encoding
-        temp = base64.b64encode(data)
-        # convert the byte to string
-        result = temp.decode()
-        return result
-
-    @staticmethod
-    def decode(text):
-        result = ""
-        try:
-            # convert the string to byte
-            data = text.encode()
-            # perform the base64 decoding
-            temp = base64.b64decode(data)
-            # convert the byte to string
-            result = temp.decode()
-        except Exception as e:
-            print(Fore.RED, f"[x] {e}")
-            exit(0)
-
-        return result
-
-
 def main():
     my_input = UserInput()
     args = my_input.parser.parse_args()
@@ -61,14 +29,14 @@ def main():
         my_input.parser.print_help(sys.stderr)
         sys.exit(1)
 
-    b64 = Base64Encoding()
-
     if args.encode:
-        result = b64.encode(args.encode)
+        data = args.encode
+        result = base64.b64encode(data.encode())
         print(Fore.GREEN, f"[+] result: {result}")
 
     elif args.decode:
-        result = b64.decode(args.decode)
+        data = args.decode
+        result = base64.b64decode(data.encode())
         print(Fore.BLUE, f"[+] result: {result}")
     else:
         my_input.parser.print_help(sys.stderr)
