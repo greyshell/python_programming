@@ -5,7 +5,8 @@
 import binascii
 import hashlib
 import bcrypt
-from base64 import b64decode, b64encode
+import hmac
+from base64 import b64decode
 
 from colorama import Fore
 
@@ -60,7 +61,7 @@ def demo_hashlib():
     orig_key = b64decode(b'Rm5EPJai72qcK3RGBpW3vPNfZy5OZothY+kHY6h21KM=')
     enc_key = hashlib.blake2s(key=orig_key, person=b'kEncrypt').hexdigest()
     mac_key = hashlib.blake2s(key=orig_key, person=b'kMAC').hexdigest()
-    print(Fore.BLUE, f"example key derivation through blacke2b-> key1:  {enc_key}, key2: {mac_key}")
+    print(Fore.BLUE, f"example key derivation through blake2b-> key1:  {enc_key}, key2: {mac_key}")
 
     return
 
@@ -71,7 +72,7 @@ def demo_bcrypt():
     :return:
     """
     print(f"\n demo bcrypt:")
-    password = "abhijit"  # a string, need to convert it to byte
+    password = "secret"  # a string, need to convert it to byte
     salt = bcrypt.gensalt()
     # can't choose which hashing algorithm to choose
     hashed = bcrypt.hashpw(password.encode(), salt)
@@ -82,7 +83,7 @@ def demo_bcrypt():
 
     # Check that an unencrypted password matches one that has
     # previously been hashed.
-    plaintext = "abhijit"
+    plaintext = "secret"
     if bcrypt.checkpw(plaintext.encode(), hashed):
         print(Fore.GREEN, f"password matches")
     else:
@@ -101,10 +102,29 @@ def demo_bcrypt():
     print(Fore.WHITE, f"hash for long password (more than 72 chars): {hashed.decode()}")
 
     # generate private / secret key from a password
-    password = "a"
+    password = "secret"
     private_key = bcrypt.kdf(password.encode(), salt, desired_key_bytes=32, rounds=100)
 
     print(Fore.CYAN, f"private key pbkdf2 format => {private_key}")
+
+
+def demo_hmac():
+    """
+    keyed hashing for message authentication
+    :return:
+    """
+    print(Fore.MAGENTA, f"[+] usage of hmac library:")
+    key = "this_is_key"
+    message = "secret"
+    # key and message should be in byte array format
+    r = hmac.new(key=key.encode(), msg=message.encode(), digestmod=None)
+    result = r.hexdigest()
+    print(Fore.BLUE, f"hmac => {result}")
+
+    # compare the output of the digest using compare_digest() method instead of == to prevent timing attack
+    h = b"a0eecc1bfaecdef54592884e15e1dfb2"
+    compare_result = hmac.compare_digest(result.encode(), h)
+    print(Fore.BLUE, f"digest compare result: {compare_result}")
 
 
 def main():
@@ -112,8 +132,9 @@ def main():
     understanding the hashing functions
     :return:
     """
-    demo_hashlib()
-    demo_bcrypt()
+    # demo_hashlib()
+    # demo_bcrypt()
+    demo_hmac()
 
 
 if __name__ == '__main__':
