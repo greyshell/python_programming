@@ -19,7 +19,7 @@ return [0, 1].
 
 [+] reference
 =============
-- leetcode-001: https://leetcode.com/problems/two-sum/
+- l33tcode-001: https://leetcode.com/problems/two-sum/
 
 """
 

@@ -29,7 +29,7 @@ def main():
     """
     test_dir_name = "/root/pentest/lab/dhaval"
 
-    lookup = defaultdict(list)
+    lookup = defaultdict(list)  # used to maintain the order
 
     for root, dirs, files in os.walk(test_dir_name):
         for filename in files:
