@@ -1,7 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
+
 # author: greyshell
 
-from ds.sort import CustomSort as s
 
 """
 [+] problem description
@@ -50,17 +50,19 @@ class Solution:
                 return [prev_index, index]
 
         # default scenario where target is not found
-        return [None, None]
+        return [None, None]  # returns a list
 
 
 def main():
-    # sample input
+    """
+    test the solution
+    :return:
+    """
     input_list = [12, 7, 11, 15, 35]
     target_sum = 50
-    result: list = Solution.two_sum(input_list, target_sum)
+    result = Solution.two_sum(input_list, target_sum)
 
     print(f"{result}")  # result: [3, 4]
-    print(s.selection_sort([3, 2, 1]))
 
 
 if __name__ == '__main__':

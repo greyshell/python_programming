@@ -86,7 +86,7 @@ class CustomSort:
 
         features:
         1) in every iteration, it finds the smallest element from the list and place that in
-        it's_list actual position.
+        it'single_linkedlist actual position.
         so, if we want to find the 5th smallest element then we can run the loop 5 times and returns
         my_list[0] -> 1st smallest element
         my_list[4] -> 5th smallest element

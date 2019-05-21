@@ -1,8 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
 # author: greyshell
 
 import unittest
-
+# added oliveslib as content root
 from my_linkedList import SinglyLinkedList
 
 
@@ -22,73 +23,73 @@ class TestSolution(unittest.TestCase):
         - run this before every single test function
         - can be used to add files to a directory / set variables
         """
-        self.s_list = SinglyLinkedList()
+        self.single_linkedlist = SinglyLinkedList()
 
     # ------------------- test methods --------------------- #
 
     def test_append(self):
-        self.s_list.append(3)
-        self.s_list.append(4)
+        self.single_linkedlist.append(3)
+        self.single_linkedlist.append(4)
 
         # assertEqual(expect, actual)
-        self.assertEqual("[3, 4]", str(self.s_list))
+        self.assertEqual("[3, 4]", str(self.single_linkedlist))  # self.single_linkedlist calls __repr__ function
 
     def test_prepend(self):
-        self.s_list.prepend(2)
-        self.s_list.prepend(1)
-        self.s_list.prepend(0)
+        self.single_linkedlist.prepend(2)
+        self.single_linkedlist.prepend(1)
+        self.single_linkedlist.prepend(0)
 
         # assertEqual(expect, actual)
-        self.assertEqual("[0, 1, 2]", str(self.s_list))
+        self.assertEqual("[0, 1, 2]", str(self.single_linkedlist))
 
     def test_reverse(self):
-        self.s_list.append(2)
-        self.s_list.append(3)
-        self.s_list.append(4)
-        self.s_list.append(5)
+        self.single_linkedlist.append(2)
+        self.single_linkedlist.append(3)
+        self.single_linkedlist.append(4)
+        self.single_linkedlist.append(5)
 
-        self.s_list.reverse()
+        self.single_linkedlist.reverse()
 
         # assertEqual(expect, actual)
-        self.assertEqual("[5, 4, 3, 2]", str(self.s_list))
+        self.assertEqual("[5, 4, 3, 2]", str(self.single_linkedlist))
 
     def test_recursive_reverse(self):
-        self.s_list.append(2)
-        self.s_list.append(3)
-        self.s_list.append(4)
-        self.s_list.append(5)
+        self.single_linkedlist.append(2)
+        self.single_linkedlist.append(3)
+        self.single_linkedlist.append(4)
+        self.single_linkedlist.append(5)
 
-        self.s_list.recursive_reverse()
+        self.single_linkedlist.recursive_reverse()
 
         # assertEqual(expect, actual)
-        self.assertEqual("[5, 4, 3, 2]", str(self.s_list))
+        self.assertEqual("[5, 4, 3, 2]", str(self.single_linkedlist))
 
     def test_find(self):
-        self.s_list.append(3)
-        self.s_list.append(4)
+        self.single_linkedlist.append(3)
+        self.single_linkedlist.append(4)
 
         # assertEqual(expect, actual)
-        self.assertEqual("3", str(self.s_list.find(3)))
+        self.assertEqual("3", str(self.single_linkedlist.find(3)))
 
     def test_remove(self):
-        self.s_list.append(3)
-        self.s_list.append(4)
-        self.s_list.append(5)
-        self.s_list.append(3)
+        self.single_linkedlist.append(3)
+        self.single_linkedlist.append(4)
+        self.single_linkedlist.append(5)
+        self.single_linkedlist.append(3)
 
-        self.s_list.remove(3)
+        self.single_linkedlist.remove(3)
 
         # assertEqual(expect, actual)
-        self.assertEqual("[4, 5, 3]", str(self.s_list))  # remove the first element
+        self.assertEqual("[4, 5, 3]", str(self.single_linkedlist))  # remove the first element
 
     def test_remove_all(self):
-        self.s_list.append(3)
-        self.s_list.append(4)
-        self.s_list.append(5)
-        self.s_list.append(3)
+        self.single_linkedlist.append(3)
+        self.single_linkedlist.append(4)
+        self.single_linkedlist.append(5)
+        self.single_linkedlist.append(3)
 
-        self.s_list.remove_all()
-        self.assertEqual("[]", str(self.s_list))
+        self.single_linkedlist.remove_all()
+        self.assertEqual("[]", str(self.single_linkedlist))
 
     # ------------------- test methods --------------------- #
 
@@ -98,7 +99,7 @@ class TestSolution(unittest.TestCase):
         - it runs automatically after every single test function is executed
         - can be used to delete files from directory those created during testing / unset variables
         """
-        self.s_list.remove_all()
+        self.single_linkedlist.remove_all()
 
     @classmethod
     def tearDownClass(cls):

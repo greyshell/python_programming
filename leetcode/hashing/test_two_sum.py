@@ -1,8 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
 # author: greyshell
 
 import unittest
-from .two_sum import Solution
+from hashing.two_sum import Solution
 
 
 class TestSolution(unittest.TestCase):

@@ -1,7 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 # author: greyshell
-# description: setup database connection
+# description: setup mysql db connection
+# note: start the mysql service -> service mysql start
 
 import mysql.connector
 from decouple import config
@@ -9,6 +10,8 @@ from decouple import config
 
 class ConnectMySQL:
     """ setup MySQL database connection """
+    def __init__(self):
+        self.conn = None
 
     def create_connection(self):
         """
@@ -17,77 +20,120 @@ class ConnectMySQL:
         """
         try:
             # pick database configurations from .env
-            conn = mysql.connector.connect(user=config('mysql_user'),
-                                           password=config('mysql_password'),
-                                           host=config('mysql_host'),
-                                           database=config('mysql_database'))
-            return conn
+            self.conn = mysql.connector.connect(user=config('mysql_user'),
+                                                password=config('mysql_password'),
+                                                host=config('mysql_host'),
+                                                database=config('mysql_database'))
 
         except mysql.connector.Error as err:
-            print err
-            return None
+            print(err)
+            exit(0)
 
-    def select_book_by_id(self, conn, book_id, fix):
+        return self.conn
+
+    def demo_select_all_statement(self):
         """
-        SQLi in where clause: select a book by id
-        :param conn: database connection object
-        :param book_id: number, primary key
-        :param fix: bool (True or False)
-        :return: a two dimension list or None
+        SELECT * FROM tbl_post01;
+        :return:
         """
         # creating cursor
-        cursor = conn.cursor()
+        cursor = self.conn.cursor()
         rows = None
         try:
-            # branching the code based on the fix
-            if fix is True:
-                # white list validation: regex and length
-                # use parametrised query
-                # query = "SELECT * FROM auth_permission WHERE id = %s_list" % book_id
-                temp_book_id = (book_id,)
-                query = 'SELECT * FROM auth_permission WHERE id = ?' + temp_book_id
-            else:
-                # query = "SELECT * FROM auth_permission where id =" + str(book_id)
-                query = "SELECT host FROM user where user = '" + str('offsec') + "'"
-
+            query = "SELECT * FROM tbl_post01"
             cursor.execute(query)
             rows = cursor.fetchall()
             cursor.close()
-            conn.close()
 
-        # except mysql.connector.Error as err:
-        #     print err
         except Exception as e:
-            print e
-
-        finally:
-            # closing connection
+            print(e)
             cursor.close()
-            conn.close()
-            return rows
+            self.conn.close()
+            exit(0)
+
+        return rows
+
+    def demo_select_statement_bad_usage(self, user):
+        """
+        SELECT comment FROM tbl_post01 WHERE user = 'tom';
+        :param user: string
+        :return:
+        """
+        # creating cursor
+        cursor = self.conn.cursor()
+        rows = None
+        try:
+            query = "SELECT comment FROM tbl_post01 WHERE user = '" + str(user) + "'"
+            cursor.execute(query)
+            rows = cursor.fetchall()
+            cursor.close()
+
+        except Exception as e:
+            print(e)
+            cursor.close()
+            self.conn.close()
+            exit(0)
+
+        return rows
+
+    def demo_select_statement_good_usage(self, user):
+        """
+        SELECT comment FROM tbl_post01 WHERE user = 'tom';
+        :param user: string
+        :return:
+        """
+        # creating cursor
+        cursor = self.conn.cursor()
+        rows = None
+        try:
+            user_input = (user,)  # pass the input in the form of a tuple
+            query = "SELECT comment FROM tbl_post01 WHERE user = %s"
+            cursor.execute(query, user_input)
+            rows = cursor.fetchall()
+            cursor.close()
+
+        except Exception as e:
+            print(e)
+            cursor.close()
+            self.conn.close()
+            exit(0)
+
+        return rows
 
 
 def main():
     db_mysql = ConnectMySQL()
     db_conn = db_mysql.create_connection()
-    # db_conn.close()
 
-    if db_conn is None:
-        msg = "error in connection"
-        print msg
-        exit(0)
+    rows = db_mysql.demo_select_all_statement()
+    if len(rows) == 0:  # when no row is found it returns the empty list [] -> but empty list is not None
+        print(f"[+] no row is found")
+    else:
+        # display the result
+        for row in rows:
+            print(row)  # rows -> list but row -> tuple
 
-    rows = db_mysql.select_book_by_id(db_conn, 1, fix=False)
-    if rows is None:
-        msg = "error in execution"
-        print msg
-        exit(0)
+    # vulnerable for SQLi
+    rows = db_mysql.demo_select_statement_bad_usage(user='user019')
+    if len(rows) == 0:  # when no row is found it returns the empty list [] -> but empty list is not None
+        print(f"[+] no row is found")
+    else:
+        # display the result
+        for row in rows:
+            print(row)
 
-    # display the result
-    for row in rows:
-        print row
+    # SQLi fix
+    rows = db_mysql.demo_select_statement_good_usage(user='user01')
+    if len(rows) == 0:  # when no row is found it returns the empty list [] -> but empty list is not None
+        print(f"[+] no row is found")
+    else:
+        # display the result
+        for row in rows:
+            print(row)
 
-    print "[+] execution finished with graceful error handling .."
+    # closing the database connection, preventing application dos attack
+    db_conn.close()
+    print("[+] execution finished with graceful error handling ..")
 
     # end of main()
 
