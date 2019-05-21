@@ -1,4 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
+# author: greyshell
 
 import os
 import hashlib
@@ -11,9 +13,9 @@ def hash_file(filename):
     hasher = hashlib.sha1()
 
     with open(filename, 'rb') as afile:
-        buf = afile.read(BLOCKSIZE)
+        buf = afile.read(BLOCKSIZE)  # instead of reading the entire file, read block by block
         while len(buf) > 0:
-            hasher.update(buf)
+            hasher.update(buf)  # proper usage of update() method for hashing large file
             buf = afile.read(BLOCKSIZE)
     return hasher.hexdigest()
 
@@ -25,11 +27,11 @@ def main():
     the directory can contain sub directory and files
     :return:
     """
-    dir_name = "/root/pentest/lab/dhaval"
+    test_dir_name = "/root/pentest/lab/dhaval"
 
     lookup = defaultdict(list)
 
-    for root, dirs, files in os.walk(dir_name):
+    for root, dirs, files in os.walk(test_dir_name):
         for filename in files:
             f = root + "/" + filename
             h = hash_file(f)
