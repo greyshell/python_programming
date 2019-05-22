@@ -2,6 +2,12 @@
 
 # author: greyshell
 
+"""
+dropbox question:
+list out all the duplicates in group and other files inside a given directory
+the directory can contain sub directory and files
+"""
+
 import os
 import hashlib
 from collections import defaultdict
@@ -21,14 +27,7 @@ def hash_file(filename):
 
 
 def main():
-    """
-    dropbox question:
-    list out all the duplicates in group and other files inside a given directory
-    the directory can contain sub directory and files
-    :return:
-    """
     test_dir_name = "/root/pentest/lab/dhaval"
-
     lookup = defaultdict(list)  # used to maintain the order
 
     for root, dirs, files in os.walk(test_dir_name):
