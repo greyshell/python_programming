@@ -3,7 +3,7 @@
 
 class ListNode:
     """
-    A node in a singly-linked list, basic building block
+    a node in a singly-linked list, basic building block
     """
     def __init__(self, data=None, next_node=None):
         self.data = data
