@@ -13,12 +13,15 @@ from colorama import Fore
 
 class UserInput:
     def __init__(self):
-        self.parser = argparse.ArgumentParser(description="[+] base64 encode / decode ")
+        self.parser = argparse.ArgumentParser(
+            description="[+] base64 encode / decode ")
         self.group = self.parser.add_mutually_exclusive_group()
 
         # below two option should be mutually exclusive
-        self.group.add_argument("-e", "--encode", metavar="", help="provide the message to encode")
-        self.group.add_argument("-d", "--decode", metavar="", help="provide the cipher to decode")
+        self.group.add_argument(
+            "-e", "--encode", metavar="", help="provide the message to encode")
+        self.group.add_argument(
+            "-d", "--decode", metavar="", help="provide the cipher to decode")
 
 
 def main():

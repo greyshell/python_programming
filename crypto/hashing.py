@@ -7,6 +7,7 @@ import hashlib
 import bcrypt
 import hmac
 from base64 import b64decode
+import scrypt
 
 from colorama import Fore
 
@@ -26,7 +27,8 @@ def demo_hashlib():
 
     message = 'secret'
 
-    list_of_hash = ['ripemd160', 'sha1', 'sha256', 'sha512', 'sha3_256', 'sha3_512', 'blake2b', 'blake2s']
+    list_of_hash = ['ripemd160', 'sha1', 'sha256', 'sha512', 'sha3_256', 'sha3_512', 'blake2b',
+                    'blake2s']
 
     for h in list_of_hash:
         result = hashlib.new(h, message.encode()).hexdigest()
@@ -44,17 +46,24 @@ def demo_hashlib():
 
     # key derivation and stretching
     print(Fore.WHITE)
-    dk = hashlib.pbkdf2_hmac(hash_name='sha256', password=b'password', salt=b'salt', iterations=100000, dklen=None)
+    dk = hashlib.pbkdf2_hmac(hash_name='sha256', password=b'password', salt=b'salt',
+                             iterations=100000, dklen=None)
     result = binascii.hexlify(dk)
     print(Fore.LIGHTRED_EX, f"pkbf2_hmac key derivation:  {result}")
 
     # key derivation through scrypt
-    r = hashlib.scrypt(password=b'password', salt=b'salt', n=4, r=32, p=1, maxmem=0, dklen=64)
+    # linux version: hashlib.script() does not exist in python 3.6.1
+    # r = hashlib.scrypt(password=b'password', salt=b'salt', n=4, r=32, p=1, maxmem=0, dklen=64)
+
+    # mac version: dependency with openssl, not working with python 3.6.1
+    r = scrypt.hash(password=b'password', salt=b'salt', N=4, r=32, p=1)
+
     result = binascii.hexlify(r)
     print(Fore.GREEN, f"scrypt key derivation:  {result}")
 
     # use of blake2b
-    result = hashlib.blake2b(message.encode(), digest_size=20, key=b"", salt=b"", person=b"").hexdigest()
+    result = hashlib.blake2b(message.encode(), digest_size=20, key=b"", salt=b"",
+                             person=b"").hexdigest()
     print(Fore.LIGHTGREEN_EX, f"blake2:  {result}")
 
     # key derivation through blake -> derive two keys from a single key
@@ -90,9 +99,10 @@ def demo_bcrypt():
         print(Fore.RED, f"password does not match")
 
     """
-    The bcrypt algorithm only handles passwords up to 72 characters, any characters beyond that are ignored. To work 
-    around this, a common approach is to hash a password with a cryptographic hash (such as sha256) and then base64 
-    encode it to prevent NULL byte problems before hashing the result with bcrypt:
+    The bcrypt algorithm only handles passwords up to 72 characters, 
+    any characters beyond that are ignored. To work around this, a common approach is to 
+    hash a password with a cryptographic hash (such as sha256) and then base64 encode it to prevent
+    NULL byte problems before hashing the result with bcrypt:
     """
     password = "an incredibly long password" * 10
     hash_algo = 'sha256'  # 64 characters
@@ -121,7 +131,8 @@ def demo_hmac():
     result = r.hexdigest()
     print(Fore.BLUE, f"hmac => {result}")
 
-    # compare the output of the digest using compare_digest() method instead of == to prevent timing attack
+    # compare the output of the digest using compare_digest() method
+    # instead of == to prevent timing attack
     h = b"a0eecc1bfaecdef54592884e15e1dfb2"
     compare_result = hmac.compare_digest(result.encode(), h)
     print(Fore.BLUE, f"digest compare result: {compare_result}")
@@ -132,9 +143,9 @@ def main():
     understanding the hashing functions
     :return:
     """
-    # demo_hashlib()
+    demo_hashlib()
     # demo_bcrypt()
-    demo_hmac()
+    # demo_hmac()
 
 
 if __name__ == '__main__':
