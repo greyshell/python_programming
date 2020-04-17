@@ -15,8 +15,8 @@ class UserInput:
         self.group = self.parser.add_mutually_exclusive_group()
 
         # below two option should be mutually exclusive
-        self.group.add_argument("-e", "--encode", metavar="", help="provide the message to encode")
-        self.group.add_argument("-d", "--decode", metavar="", help="provide the cipher to decode")
+        self.group.add_argument("-e", "--encrypt", metavar="", help="provide the message to encode")
+        self.group.add_argument("-d", "--decrypt", metavar="", help="provide the cipher to decode")
 
         self.parser.add_argument("-s", "--shift_key", metavar="", required=True, help="provide the shift key (0-25) ")
 
