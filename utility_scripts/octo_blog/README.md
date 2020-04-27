@@ -3,17 +3,13 @@
 
 ### Usage
 ```
-usage: lab_vpn.py [-h] -p  -c  -e  -t  [-d]
+usage: octo_blog.py [-h] -c
 
-automate the openvpn lab connection
+create blog posts for octopress
 
 optional arguments:
   -h, --help      show this help message and exit
   -c , --config   provide a .json file
-
-example:
-python lab_vpn.py -c asinha.json
-
 ```
 
 
