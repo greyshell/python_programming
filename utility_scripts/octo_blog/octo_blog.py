@@ -97,7 +97,7 @@ class Octopress:
                     continue
 
                 # check if the file types are whitelisted
-                if file_type in self._whitelisted_filetypes and curr_dir:
+                if file_type in self._whitelisted_filetypes:
                     # parse metadata from a markdown file
                     date, comments = self._parse_metadata(absolute_file_path)
                     if date != "" and comments != "true":
