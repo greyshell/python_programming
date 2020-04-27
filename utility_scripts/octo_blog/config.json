@@ -1,7 +1,7 @@
 {
   "src_dir": "/root/Desktop/sample/",
-  "dest_dir": "/root/Desktop/octopress/source/_posts/",
+  "dst_dir": "/root/Desktop/octopress/source/_posts/",
   "publish_flag": "true",
-  "blacklisted_dirs": ["crypto", "algorithm"],
+  "blacklisted_dirs": ["", ""],
   "whitelisted_filetypes": [".md", ".markdown"]
 }

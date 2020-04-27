@@ -21,7 +21,7 @@ class UserInput:
 class Octopress:
     def __init__(self):
         self._src_dir = ""
-        self._dest_dir = ""
+        self._dst_dir = ""
         self._publish_flag = ""
         self._blacklisted_dirs = list()
         self._whitelisted_filetypes = list()
@@ -34,21 +34,21 @@ class Octopress:
         """
 
         self._src_dir = config_dict["src_dir"]
-        self._dest_dir = config_dict["dest_dir"]
+        self._dst_dir = config_dict["dst_dir"]
         self._publish_flag = config_dict["publish_flag"]
         self._blacklisted_dirs = config_dict["blacklisted_dirs"]
         self._whitelisted_filetypes = config_dict["whitelisted_filetypes"]
 
         # validate the input
-        if not self._src_dir and self._dest_dir and self._publish_flag:
+        if not self._src_dir and self._dst_dir and self._publish_flag:
             print(f"[x] please fill the input in the json config file !!")
             sys.exit(0)
 
-    def clean_dest_dir(self):
+    def clean_dst_dir(self):
         # clean the existing dest dir
-        command = "cd " + self._dest_dir + " && " + "rm -rf *"
-        print(command)
-        subprocess.check_output(command, shell=True)
+        cmd = "cd " + self._dst_dir + " && " + "rm -rf *"
+        print(cmd)
+        subprocess.check_output(cmd, shell=True)
 
     @staticmethod
     def _parse_metadata(absolute_file_path):
@@ -60,17 +60,18 @@ class Octopress:
         counter = 0
         with open(absolute_file_path) as file:
             for line in file:
-                if line[0] == b'-':
+                # if first line is not started with '-' then the file is not valid
+                if counter == 0 and line[:-1] != '---':
                     return date, comments
-                else:
-                    # date
-                    if counter == 3:
-                        date = line.split(" ")[1]
-                    # comments
-                    elif counter == 4:
-                        comments = line.split(" ")[1]
-                    elif counter > 4:
-                        break
+                # date
+                if counter == 3:
+                    date = line.split(" ")[1]
+                # comments
+                elif counter == 4:
+                    # print(line.split(" ")[1])
+                    comments = line.split(" ")[1]
+                elif counter > 4:
+                    break
                 counter = counter + 1
         return date, comments
 
@@ -81,17 +82,33 @@ class Octopress:
         """
         for root, dirs, files in os.walk(self._src_dir):
             for file in files:
-                # print(root, curr_dir, files)
-                for filetype in self._whitelisted_filetypes:
+                # resolve the / issue at src directory
+                if root != self._src_dir:
                     absolute_file_path = root + "/" + file
-                    if filetype in absolute_file_path:
-                        print(absolute_file_path)
-                        # parse metadata from a markdown file
-                        date, comments = self._parse_metadata(absolute_file_path)
-                        if date != "" and comments != "":
-                            print(date, comments)
+                else:
+                    absolute_file_path = root + file
 
-                        exit(0)
+                # extract the file type
+                name, file_type = os.path.splitext(file)
+
+                # extract the directory
+                curr_dir = root.split('/').pop()
+
+                if curr_dir in self._blacklisted_dirs:
+                    continue
+
+                # check if the file types are whitelisted
+                if file_type in self._whitelisted_filetypes and curr_dir:
+                    # parse metadata from a markdown file
+                    date, comments = self._parse_metadata(absolute_file_path)
+                    if date != "" and comments != "true":
+                        # print(absolute_file_path)
+                        # prepare the file name
+                        new_file_name = date + "-" + name.replace('_', '-') + ".markdown"
+                        # print(new_file_name)
+                        cmd = "cp " + absolute_file_path + " " + self._dst_dir + new_file_name
+                        print(cmd)
+                        subprocess.check_output(cmd, shell=True)
 
 
 if __name__ == "__main__":
@@ -108,7 +125,7 @@ if __name__ == "__main__":
 
         octo = Octopress()
         octo.get_parameters(json_config)
-        # octo.clean_dest_dir()
+        octo.clean_dst_dir()
         octo.process_markdown()
 
     else:
