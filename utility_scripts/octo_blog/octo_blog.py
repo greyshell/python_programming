@@ -26,7 +26,6 @@ class Octopress:
         self._blacklisted_dirs = list()
         self._whitelisted_filetypes = list()
 
-
     def get_parameters(self, config_dict):
         """
         retrieve the value from the input
@@ -51,17 +50,48 @@ class Octopress:
         print(command)
         subprocess.check_output(command, shell=True)
 
-    def _parse_metadata(self):
-        pass
+    @staticmethod
+    def _parse_metadata(absolute_file_path):
+        """
+        parse metadata from a markdown file
+        :return:
+        """
+        date = comments = ""
+        counter = 0
+        with open(absolute_file_path) as file:
+            for line in file:
+                if line[0] == b'-':
+                    return date, comments
+                else:
+                    # date
+                    if counter == 3:
+                        date = line.split(" ")[1]
+                    # comments
+                    elif counter == 4:
+                        comments = line.split(" ")[1]
+                    elif counter > 4:
+                        break
+                counter = counter + 1
+        return date, comments
 
     def process_markdown(self):
-        for root, curr_dir, files in os.walk(self._src_dir):
-            # print(f"root: {root}, curr_dir: {curr_dir}, files: {files}")
+        """
+        process the markdown files
+        :return:
+        """
+        for root, dirs, files in os.walk(self._src_dir):
             for file in files:
-                absolute_file_path = root + file
+                # print(root, curr_dir, files)
                 for filetype in self._whitelisted_filetypes:
+                    absolute_file_path = root + "/" + file
                     if filetype in absolute_file_path:
                         print(absolute_file_path)
+                        # parse metadata from a markdown file
+                        date, comments = self._parse_metadata(absolute_file_path)
+                        if date != "" and comments != "":
+                            print(date, comments)
+
+                        exit(0)
 
 
 if __name__ == "__main__":
