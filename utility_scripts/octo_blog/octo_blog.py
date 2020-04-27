@@ -103,7 +103,7 @@ class Octopress:
                     if date != "" and comments != "true":
                         # prepare the file name
                         new_file_name = date + "-" + name.replace('_', '-') + ".markdown"
-                        # copy the fle to the dst dir
+                        # copy the file to the dst dir
                         cmd = "cp " + absolute_file_path + " " + self._dst_dir + new_file_name
                         print(cmd)
                         subprocess.check_output(cmd, shell=True)
