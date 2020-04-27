@@ -45,7 +45,7 @@ class Octopress:
             sys.exit(0)
 
     def clean_dst_dir(self):
-        # clean the existing dest dir
+        # clean the existing dst dir
         cmd = "cd " + self._dst_dir + " && " + "rm -rf *"
         print(cmd)
         subprocess.check_output(cmd, shell=True)
@@ -53,7 +53,7 @@ class Octopress:
     @staticmethod
     def _parse_metadata(absolute_file_path):
         """
-        parse metadata from a markdown file
+        parse the metadata from a markdown file
         :return:
         """
         date = comments = ""
@@ -68,7 +68,6 @@ class Octopress:
                     date = line.split(" ")[1]
                 # comments
                 elif counter == 4:
-                    # print(line.split(" ")[1])
                     comments = line.split(" ")[1]
                 elif counter > 4:
                     break
@@ -102,10 +101,9 @@ class Octopress:
                     # parse metadata from a markdown file
                     date, comments = self._parse_metadata(absolute_file_path)
                     if date != "" and comments != "true":
-                        # print(absolute_file_path)
                         # prepare the file name
                         new_file_name = date + "-" + name.replace('_', '-') + ".markdown"
-                        # print(new_file_name)
+                        # copy the fle to the dst dir
                         cmd = "cp " + absolute_file_path + " " + self._dst_dir + new_file_name
                         print(cmd)
                         subprocess.check_output(cmd, shell=True)
