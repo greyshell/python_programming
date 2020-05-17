@@ -1,6 +1,6 @@
 ## Description
 
-`octo-blog.py` is used to generate `Greyshell's Diary` posts from few private `Typora` notes.
+`octo-blog.py` is used to generate posts for `Greyshell's Diary`.
 
 ### How to use
 
