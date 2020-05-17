@@ -1,7 +1,9 @@
 {
-  "src_dir": "/root/Desktop/sample/",
-  "dst_dir": "/root/Desktop/octopress/source/_posts/",
+  "src_dir": "/Users/abhijitsinha/Dropbox/grey_diary/",
+  "dst_dir": "/Users/abhijitsinha/Dropbox/greyBlog/octopress/source/_posts/",
   "publish_flag": "true",
-  "blacklisted_dirs": ["", ""],
-  "whitelisted_filetypes": [".md", ".markdown"]
+  "blacklisted_dirs": [".git", ""],
+  "whitelisted_filetypes": [".md", ".markdown"],
+  "skipped_files": [".py", ".txt", ".java", ".c",".cpp", ".js"],
+  "platform": "mac"
 }
