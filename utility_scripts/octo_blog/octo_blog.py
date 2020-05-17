@@ -153,18 +153,15 @@ class Octopress:
 
                         # remove the old file
                         cmd = "cd " + self._dst_dir + " " + "&& rm -f " + new_file_name
-                        # print(cmd)
                         subprocess.check_output(cmd, shell=True)
 
                         # clean the artifacts dir for that specific file
                         cmd = "cd " + self._dst_dir + "../artifacts/ && " + "rm -rf " + name + \
                               ".assets"
-                        # print(cmd)
                         subprocess.check_output(cmd, shell=True)
 
                         # copy the file to the dst dir
                         cmd = "cp " + absolute_file_path + " " + self._dst_dir + new_file_name
-                        # print(cmd)
                         subprocess.check_output(cmd, shell=True)
 
                         # mac os specific commands
@@ -177,13 +174,11 @@ class Octopress:
                             # remove the bkk file
                             # add artifacts on the image link
                             cmd = "rm -f " + self._dst_dir + new_file_name + ".bkk"
-                            # print(cmd)
                             subprocess.check_output(cmd, shell=True)
 
                             # copy the images for mac
                             cmd = "cp -R " + root + "/" + name + ".assets" + \
                                   " " + self._dst_dir + "../artifacts/"
-                            # print(cmd)
                             subprocess.check_output(cmd, shell=True)
 
                         else:
@@ -192,12 +187,10 @@ class Octopress:
                             cmd = "sed -i " + "'s/" + name + ".assets/\/artifacts\/" + name + \
                                   ".assets/'" + " " + \
                                   self._dst_dir + new_file_name
-                            # print(cmd)
                             subprocess.check_output(cmd, shell=True)
                             # copy the images for linux
                             cmd = "cp -r " + root + "/" + name + ".assets/" + \
                                   " " + self._dst_dir + "../artifacts/"
-                            # print(cmd)
                             subprocess.check_output(cmd, shell=True)
 
 
