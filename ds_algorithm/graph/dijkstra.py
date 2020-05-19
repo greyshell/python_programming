@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# reference: grokking algorithm by Aditya Y. Bhargava
+# reference: grokking algorithm by Aditya Y. Bhargava,
+# problem: trading a piano, page 122
 
 
 class Graph:
