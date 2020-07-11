@@ -9,7 +9,7 @@ class Graph:
     def __init__(self):
         # create the graph
         self._graph = dict()
-        # book node is start node
+        # start node: book
         # add book node into the graph
         self._graph["book"] = dict()
         # add connected directed edges as keys and their weights as values

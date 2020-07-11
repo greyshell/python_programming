@@ -5,7 +5,7 @@
 # note: start the mysql service -> service mysql start
 
 import mysql.connector
-from decouple import config
+import keyring
 
 
 class ConnectMySQL:
@@ -15,15 +15,15 @@ class ConnectMySQL:
 
     def create_connection(self):
         """
-        create a database connection to the MySQL database
+        create a database connection for MySQL database
         :return: connection object or None
         """
         try:
-            # pick database configurations from .env
-            self.conn = mysql.connector.connect(user=config('mysql_user'),
-                                                password=config('mysql_password'),
-                                                host=config('mysql_host'),
-                                                database=config('mysql_database'))
+            # pick database credentials from keyring
+            self.conn = mysql.connector.connect(user=keyring.get_password('mysql', 'user'),
+                                                password=keyring.get_password('mysql', 'password'),
+                                                host='localhost',
+                                                database='vulnapp')
 
         except mysql.connector.Error as err:
             print(err)
@@ -63,7 +63,7 @@ class ConnectMySQL:
         cursor = self.conn.cursor()
         rows = None
         try:
-            query = "SELECT comment FROM tbl_post01 WHERE user = '" + str(user) + "'"
+            query = "SELECT user_comment, user_name FROM tbl_post01 WHERE user_name = '" + str(user) + "'"
             cursor.execute(query)
             rows = cursor.fetchall()
             cursor.close()
@@ -87,7 +87,7 @@ class ConnectMySQL:
         rows = None
         try:
             user_input = (user,)  # pass the input in the form of a tuple
-            query = "SELECT comment FROM tbl_post01 WHERE user = %s"
+            query = "SELECT user_comment, user_name FROM tbl_post01 WHERE user_name = %s"
             cursor.execute(query, user_input)
             rows = cursor.fetchall()
             cursor.close()
@@ -105,6 +105,7 @@ def main():
     db_mysql = ConnectMySQL()
     db_conn = db_mysql.create_connection()
 
+    # select all rows
     rows = db_mysql.demo_select_all_statement()
     if len(rows) == 0:  # when no row is found it returns the empty list [] -> but empty list is not None
         print(f"[+] no row is found")
@@ -114,7 +115,8 @@ def main():
             print(row)  # rows -> list but row -> tuple
 
     # vulnerable for SQLi
-    rows = db_mysql.demo_select_statement_bad_usage(user='user019')
+    print("")
+    rows = db_mysql.demo_select_statement_bad_usage(user='amit')
     if len(rows) == 0:  # when no row is found it returns the empty list [] -> but empty list is not None
         print(f"[+] no row is found")
     else:
@@ -123,7 +125,8 @@ def main():
             print(row)
 
     # SQLi fix
-    rows = db_mysql.demo_select_statement_good_usage(user='user01')
+    print("")
+    rows = db_mysql.demo_select_statement_good_usage(user='amit')
     if len(rows) == 0:  # when no row is found it returns the empty list [] -> but empty list is not None
         print(f"[+] no row is found")
     else:
@@ -131,9 +134,9 @@ def main():
         for row in rows:
             print(row)
 
-    # closing the database connection, preventing application dos attack
+    # # closing the database connection, preventing application dos attack
     db_conn.close()
-    print("[+] execution finished with graceful error handling ..")
+    print("[+] finished execution..")
 
     # end of main()
 
