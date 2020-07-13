@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <style>
+        table {
+            border: 1px solid #000000;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid black;
+        }
+    </style>
+    <title>SQL Injection</title>
+</head>
+<body>
+<h2>SQL Injection</h2>
+<i>author: greyshell</i><br><br>
+Objective: set the age of admin user <br><br>
+<form method="POST">
+    Enter your feedback:
+    <label>
+        <input type="text" name="comment" size=100/>
+    </label><br/><br/>
+    <input type="submit"/><br/>
+</form>
+<br>
+{% if error is defined %}
+Error: {{ error }}<br/>
+{% endif %}
+{% if results is defined %}
+{% if results|length == 0 %}
+No result found<br/>
+{% else %}
+<h4>Result:</h4>
+<table id="results">
+    <tr>
+        <th>Comment</th>
+        <th>City</th>
+        <th>Age</th>
+        <th>User</th>
+    </tr>
+    {% for result in results %}
+    <tr>
+        <td>{{ result[0] }}</td>
+        <td>{{ result[1]}}</td>
+        <td>{{ result[2] }}</td>
+        <td>{{ result[3]}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+{% endif %}
+</body>
+</html>

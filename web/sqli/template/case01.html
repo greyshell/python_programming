@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <style>
+        table {
+            border: 1px solid #000000;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid black;
+        }
+    </style>
+    <title>SQL Injection</title>
+</head>
+<body>
+<h2>SQL Injection</h2>
+<i>author: greyshell</i><br><br>
+Objective: extract admin's password and token <br><br>
+<form method="POST">
+    Enter the name of a user to extract his / her comments:
+    <label>
+        <input type="text" name="user" size=100/>
+    </label><br/><br/>
+    <input type="submit"/><br/>
+</form>
+<br>
+{% if error is defined %}
+Error: {{ error }}<br/>
+{% endif %}
+{% if results is defined %}
+{% if results|length == 0 %}
+No result found<br/>
+{% else %}
+<h4>Result:</h4>
+<table id="results">
+    <tr>
+        <th>Name</th>
+        <th>Comment</th>
+    </tr>
+    {% for result in results %}
+    <tr>
+        <td>{{ result[1] }}</td>
+        <td>{{ result[0]}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+{% endif %}
+</body>
+</html>

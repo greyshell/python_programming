@@ -10,6 +10,7 @@ import keyring
 
 class ConnectMySQL:
     """ setup MySQL database connection """
+
     def __init__(self):
         self.conn = None
 
