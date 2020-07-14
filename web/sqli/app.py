@@ -33,9 +33,8 @@ def tbl_post01():
         return render_template("case01.html")
     user = request.form.get('user')
     model = TblPost01()
-    valid, rows = model.unsafe_select_query(user)
-    # valid, result = get_results_case01(query)
-    if valid:
+    return_type, rows = model.unsafe_select_query(user)
+    if return_type:
         return render_template("case01.html", results=rows)
     return render_template("case01.html", error=rows)
 
@@ -46,14 +45,14 @@ def tbl_post02():
         return render_template("case02.html")
     comment = request.form.get('comment')
     model = TblPost02()
-    # set default values
-    pin = 0
-    age = 0
-    user = 'anonymous'
-    valid, rows = model.unsafe_insert_query(comment, pin, age, user)
-    if valid:
-        valid, rows = model.safe_select_query()
-        if valid is True:
+
+    pin = 0  # set default value
+    age = 0  # set default value
+    user = 'anonymous'  # set default value
+    return_type, rows = model.unsafe_insert_query(comment, pin, age, user)
+    if return_type:
+        return_type, rows = model.safe_select_query()
+        if return_type:
             return render_template("case02.html", results=rows)
         else:
             return render_template("case02.html", error=rows)
@@ -71,10 +70,15 @@ def tbl_post03():
     age = 0
     random_string = ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(10))
     user = 'anonymous' + '-' + random_string
-    valid, rows = model.unsafe_insert_query(comment, city, age, user)
-    if valid:
-        valid, rows = model.safe_select_query()
-        if valid is True:
+    # check if the user already exists
+    return_type = model.is_exist_user(user)
+    if return_type:
+        return render_template("case03.html", error='user already exists')
+
+    return_type, rows = model.unsafe_insert_query(comment, city, age, user)
+    if return_type:
+        return_type, rows = model.safe_select_query()
+        if return_type:
             return render_template("case03.html", results=rows)
         else:
             return render_template("case03.html", error=rows)

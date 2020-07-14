@@ -2,16 +2,15 @@
 # usage: mysql -u root -p < resource.sql
 
 CREATE TABLE tbl_post01 (
-user_comment VARCHAR(30) NOT NULL,
-user_name VARCHAR(10) NOT NULL
+comment VARCHAR(30) NOT NULL,
+user VARCHAR(10) NOT NULL
 );
 
-INSERT INTO tbl_post01 (user_comment, user_name) VALUES ('hola', 'pedro');
-INSERT INTO tbl_post01 (user_comment, user_name) VALUES ('hello', 'jack');
-INSERT INTO tbl_post01 (user_comment, user_name) VALUES ('ola', 'andre');
-INSERT INTO tbl_post01 (user_comment, user_name) VALUES ('hi', 'amit');
-INSERT INTO tbl_post01 (user_comment, user_name) VALUES ('salut', 'chen');
+INSERT INTO tbl_post01 (comment, user) VALUES ('hola', 'pedro');
+INSERT INTO tbl_post01 (comment, user) VALUES ('hi', 'jack');
+INSERT INTO tbl_post01 (comment, user) VALUES ('ola', 'andre');
 
+drop table tbl_post01
 
 CREATE TABLE tbl_post02 (
 comment VARCHAR(30) NOT NULL,
@@ -46,5 +45,6 @@ PRIMARY KEY (user)
 INSERT INTO tbl_post03 (comment, city, age, user) VALUES ('hola', 'mountain view', 25, 'dhaval');
 INSERT INTO tbl_post03 (comment, city, age, user) VALUES ('hi', 'santa clara', 37, 'admin');
 
+update tbl_post03 set age = 25, comment = 'Hello', city = 'San Jose' where user = 'admin'
 
 

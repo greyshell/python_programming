@@ -33,7 +33,7 @@ class TblPost03:
         cursor = self.db.conn.cursor()
         rows = None
         try:
-            query = "SELECT comment, city, age, user FROM tbl_post03 WHERE user LIKE 'anonymous%'"
+            query = "SELECT comment, city, age, user FROM tbl_post03"
             cursor.execute(query)
             rows = cursor.fetchall()
             cursor.close()
@@ -44,3 +44,23 @@ class TblPost03:
             cursor.close()
             self.db.conn.close()
             return False, e
+
+    def is_exist_user(self, user):
+        # create the cursor
+        cursor = self.db.conn.cursor()
+        rows = None
+        try:
+            user_input = (user,)  # pass the input in the form of a tuple
+            query = "SELECT comment, city, age, user FROM tbl_post03 WHERE user = %s"
+            cursor.execute(query, user_input)
+            rows = cursor.fetchall()
+            cursor.close()
+            if len(rows) > 0:
+                return True
+            return False
+
+        except Exception as e:
+            print(e)
+            cursor.close()
+            self.db.conn.close()
+            return False

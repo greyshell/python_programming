@@ -19,7 +19,7 @@
 <i>author: greyshell</i><br><br>
 Objective: extract admin's password and token <br><br>
 <form method="POST">
-    Enter the name of a user to extract his / her comments:
+    Enter a user to view his comments:
     <label>
         <input type="text" name="user" size=100/>
     </label><br/><br/>
@@ -36,8 +36,8 @@ No result found<br/>
 <h4>Result:</h4>
 <table id="results">
     <tr>
-        <th>Name</th>
-        <th>Comment</th>
+        <th>user</th>
+        <th>comment</th>
     </tr>
     {% for result in results %}
     <tr>

@@ -14,7 +14,7 @@ class TblPost01:
         cursor = self.db.conn.cursor()
         rows = None
         try:
-            query = f"SELECT user_comment, user_name FROM tbl_post01 WHERE user_name = '{user}'"
+            query = f"SELECT comment, user FROM tbl_post01 WHERE user = '{user}'"
             cursor.execute(query)
             rows = cursor.fetchall()
             cursor.close()
@@ -31,7 +31,7 @@ class TblPost01:
         rows = None
         try:
             user_input = (user,)  # pass the input in the form of a tuple
-            query = "SELECT user_comment, user_name FROM tbl_post01 WHERE user_name = %s"
+            query = "SELECT comment, user FROM tbl_post01 WHERE user = %s"
             cursor.execute(query, user_input)
             rows = cursor.fetchall()
             cursor.close()
