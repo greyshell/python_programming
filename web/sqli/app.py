@@ -73,7 +73,7 @@ def tbl_post03():
     # check if the user already exists
     return_type = model.is_exist_user(user)
     if return_type:
-        return render_template("case03.html", error='user already exists')
+        return render_template("case03.html", error='user already exists / had exception')
 
     return_type, rows = model.unsafe_insert_query(comment, city, age, user)
     if return_type:
