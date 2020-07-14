@@ -63,4 +63,4 @@ class TblPost03:
             print(e)
             cursor.close()
             self.db.conn.close()
-            return False
+            return False, e

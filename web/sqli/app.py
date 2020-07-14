@@ -71,7 +71,7 @@ def tbl_post03():
     random_string = ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(10))
     user = 'anonymous' + '-' + random_string
     # check if the user already exists
-    return_type = model.is_exist_user(user)
+    return_type, rows = model.is_exist_user(user)
     if return_type:
         return render_template("case03.html", error='user already exists / had exception')
 
