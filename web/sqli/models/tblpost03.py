@@ -57,7 +57,7 @@ class TblPost03:
             cursor.close()
             if len(rows) > 0:
                 return True
-            return False
+            return False, rows
 
         except Exception as e:
             print(e)
