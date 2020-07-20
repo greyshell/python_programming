@@ -56,7 +56,7 @@ class TblPost03:
             rows = cursor.fetchall()
             cursor.close()
             if len(rows) > 0:
-                return True
+                return True, rows
             return False, rows
 
         except Exception as e:
