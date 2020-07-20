@@ -46,6 +46,11 @@ class TblPost03:
             return False, e
 
     def is_exist_user(self, user):
+        """
+        check if the user exist or not
+        :param user:
+        :return: boolean, rows / e
+        """
         # create the cursor
         cursor = self.db.conn.cursor()
         rows = None
