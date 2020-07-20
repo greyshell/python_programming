@@ -47,7 +47,7 @@ class TblPost03:
 
     def is_exist_user(self, user):
         """
-        check if the user exist or not
+        check if the user exists or not
         :param user:
         :return: boolean, rows / e
         """
