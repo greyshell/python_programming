@@ -19,7 +19,6 @@ age INT NOT NULL,
 user VARCHAR(30) NOT NULL
 );
 
-
 INSERT INTO tbl_post02 (comment, pin, age, user) VALUES ('hola', 100, 25, 'dhaval');
 
 delete from tbl_post02 where user LIKE = 'anonymous%'
