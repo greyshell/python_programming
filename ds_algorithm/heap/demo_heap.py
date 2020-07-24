@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# description: learning heap methods
+# description: how to use heap ADT
 
 import heapq
 
@@ -37,6 +37,7 @@ def heap_sort_compact(h):
 # noinspection PyProtectedMember
 def main():
     nums = [12, 7, 11, 15, 35, 17]
+    # take a copy
     test_nums = nums.copy()
     print(f"list: {nums}")
 
