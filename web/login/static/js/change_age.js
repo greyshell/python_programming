@@ -7,7 +7,7 @@ function changeAgeRequest() {
             var ageField = document.getElementById("age");
             ageField.innerHTML = newAge;
         } else {
-            notice += "Error: ";
+            notice += "Error:  ";
         }
         notice += JSON.parse(xhr.responseText)['status'];
         var noticeField = document.getElementById("notice");
