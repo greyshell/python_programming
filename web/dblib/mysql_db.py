@@ -37,5 +37,6 @@ class MySQLdb:
 
     @staticmethod
     def close():
-        MySQLdb.instance.conn.close()
-        MySQLdb.instance = None
+        if MySQLdb.instance is not None:
+            MySQLdb.instance.conn.close()
+            MySQLdb.instance = None

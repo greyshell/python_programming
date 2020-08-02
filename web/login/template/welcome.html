@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>Login</title>
+    <script src="{{ url_for('static', filename='js/change_age.js') }}"></script>
+</head>
+<body>
+Hello {{ user.name }}, your age is {{ user.age }} <br/>
+<a href="/logout">Log out</a><br/>
+
+{% if notice is defined %}
+Notice: {{ notice }}<br/>
+{% endif %}
+
+<form id="change_age_form">
+    Change age: <input type="text" name="age"/><br/>
+    <input type="button" value="submit" onclick="changeAgeRequest()"/>
+</form>
+</body>
+</html>
