@@ -6,7 +6,6 @@ import os
 
 from flask import Flask, render_template, session, redirect, url_for, jsonify
 from flask import request
-from flask_wtf.csrf import CSRFProtect
 from web.login.models import *
 
 templates_path = os.path.abspath(
@@ -16,7 +15,6 @@ app = Flask(__name__, template_folder=templates_path)
 app.config.update(dict(
         SECRET_KEY="woopie"
 ))
-csrf = CSRFProtect(app)
 
 
 def get_logged_in_user():
@@ -37,7 +35,6 @@ def after_request_func(response):
 
 
 @app.route('/', methods=['GET', 'POST'])
-@csrf.exempt
 def index():
     user = get_logged_in_user()
     if user is not None:
@@ -66,7 +63,8 @@ def update_age():
     user = get_logged_in_user()
     if user is None:
         return jsonify(status="User not logged in")
-    age = int(request.form.get('age'))
+    print(request.get_json())
+    age = int(request.json['age'])
     user.age = age
     success = user.save()
     if success[0]:
@@ -76,7 +74,6 @@ def update_age():
 
 
 @app.route('/logout')
-@csrf.exempt
 def logout():
     if 'userid' in session:
         session['userid'] = None

@@ -4,7 +4,7 @@
     <script src="{{ url_for('static', filename='js/change_age.js') }}"></script>
 </head>
 <body>
-Hello {{ user.name }}, your age is {{ user.age }} <br/>
+Hello {{ user.name }}, your age is <span id="age">{{ user.age }}</span> <br/>
 <a href="/logout">Log out</a><br/>
 
 {% if notice is defined %}
@@ -12,8 +12,9 @@ Notice: {{ notice }}<br/>
 {% endif %}
 
 <form id="change_age_form">
-    Change age: <input type="text" name="age"/><br/>
-    <input type="button" value="submit" onclick="changeAgeRequest()"/>
+    Change age: <input type="text" name="age" id="age_field"/><br/>
+    <input type="button" value="submit" onclick="changeAgeRequest()"/><br/>
+    <span id="notice"></span>
 </form>
 </body>
 </html>
