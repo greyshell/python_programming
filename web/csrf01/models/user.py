@@ -44,6 +44,7 @@ class User:
             cursor.execute(query, user_input)
             rows = cursor.fetchall()
             cursor.close()
+            print(rows)
             return User(rows[0])
 
         except Exception as e:
@@ -65,6 +66,8 @@ class User:
             cursor.execute(query, user_input)
             rows = cursor.fetchall()
             cursor.close()
+            print(rows)
+            print(user_id)
             return User(rows[0])
 
         except Exception as e:

@@ -13,9 +13,6 @@ function changeAgeRequest() {
         var noticeField = document.getElementById("notice");
         noticeField.innerText = notice;
     };
-    var jsonData = {age: newAge};
-    var formattedJsonData = JSON.stringify(jsonData);
     xhr.open('POST', '/update_age');
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.send(formattedJsonData)
+    xhr.send("age=" + newAge);
 }

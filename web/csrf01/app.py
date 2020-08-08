@@ -6,7 +6,7 @@ import os
 
 from flask import Flask, render_template, session, redirect, url_for, jsonify
 from flask import request
-from web.login.models import *
+from web.csrf01.models import *
 
 templates_path = os.path.abspath(
         './template/'
@@ -19,6 +19,8 @@ app.config.update(dict(
 
 def get_logged_in_user():
     if "userid" not in session:
+        return None
+    if session['userid'] is None:
         return None
     return User.logged_user(session['userid'])
 
@@ -63,8 +65,7 @@ def update_age():
     user = get_logged_in_user()
     if user is None:
         return jsonify(status="User not logged in")
-    print(request.get_json())
-    age = int(request.json['age'])
+    age = int(request.data[4:])
     user.age = age
     success = user.save()
     if success[0]:
