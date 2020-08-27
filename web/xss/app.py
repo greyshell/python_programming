@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
+
 # author: greyshell
 
 import os
 
-from flask import Flask, render_template, session, redirect, url_for, jsonify
+from flask import Flask, render_template, session, redirect, url_for, jsonify, make_response
 from flask import request
-from web.csrf01.models import *
+from web.csrf.models import *
 
 templates_path = os.path.abspath(
         './template/'
@@ -60,6 +61,24 @@ def welcome():
     return render_template('welcome.html', user=user)
 
 
+@app.route('/setcookie', methods=['GET'])
+def setcookie():
+    resp = make_response("Cookie set")
+    resp.set_cookie("color", "red")
+    return resp
+
+
+@app.route('/xss', methods=['GET'])
+def xss():
+    user = get_logged_in_user()
+    if user is None:
+        return redirect(url_for("index"))
+    xss_payload = request.args.get('payload')
+    if xss_payload is not None:
+        return xss_payload
+    return "No XSS"
+
+
 @app.route('/update_age', methods=['POST'])
 def update_age():
     user = get_logged_in_user()
@@ -82,4 +101,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    app.run(port=5001, debug=True)
