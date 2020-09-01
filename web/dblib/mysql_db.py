@@ -18,7 +18,7 @@ class MySQLdb:
             """
             try:
                 # pick database credentials from keyring
-                self.conn = mysql.connector.connect(user=keyring.get_password('mysql', 'user'),
+                self.conn = mysql.connector.connect(user=keyring.get_password('mysql', 'username'),
                                                     password=keyring.get_password('mysql', 'password'),
                                                     host='localhost',
                                                     database='vulnapp')
