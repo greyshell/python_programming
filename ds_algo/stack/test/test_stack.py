@@ -9,8 +9,8 @@ def main():
     - python list is backed by dynamic array, so occasionally it needs to be resized when item is added / removed
     - it does not guarantee the stable O(1) push and pop
     - however, it provides the amortize time complexity is O(1) when the item is added / remove at the end of list
-    - adding / removing from front is much slower and it takes O(n) time as shifting of existing elements are required
-    - IndexError => pop from an empty list
+    - adding / removing from front / middle is much slower and it takes O(n) time as shifting of existing elements
+    are required
     - no parallel processing support / it handles locking and unlocking
     :return:
     """
@@ -29,8 +29,12 @@ def main():
     print(f"peek the stack top: {data}")
 
     # pop: O(1), stack shrinks from right to left
-    data = s.pop()
-    print(f"popped: {data}")
+    # raise IndexError => pop from an empty list
+    try:
+        data = s.pop()
+        print(f"popped: {data}")
+    except IndexError as e:
+        print(f"{e}")
 
     print(f"display the stack elements: {list(s)}")
 

@@ -10,7 +10,6 @@ def main():
     """
     - deque is backed by doubly linked list
     - it that guarantees the stable O(1) push and pop
-    - IndexError => pop from an empty list
     - no parallel processing support / it handles locking and unlocking
     :return:
     """
@@ -30,8 +29,12 @@ def main():
     print(f"peek the stack top: {data}")
 
     # pop: O(1), stack shrinks from right to left
-    data = s.pop()
-    print(f"popped: {data}")
+    # raise IndexError => pop from an empty list
+    try:
+        data = s.pop()
+        print(f"popped: {data}")
+    except IndexError as e:
+        print(f"{e}")
 
     print(f"display the stack elements: {list(s)}")
 
