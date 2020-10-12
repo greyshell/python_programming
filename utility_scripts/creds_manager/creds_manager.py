@@ -44,20 +44,20 @@ class UserInput:
 
 def set_keyring(keyring_name, username, password):
     keyring.set_password(keyring_name, "username", username)
-    keyring.set_password(keyring_name, username, password)
+    keyring.set_password(keyring_name, "password", password)
 
 
 def get_keyring(keyring_name):
     username = keyring.get_password(keyring_name, "username")
-    password = keyring.get_password(keyring_name, str(username))
+    password = keyring.get_password(keyring_name, "password")
     return username, password
 
 
 def del_keyring(keyring_name):
     username, password = get_keyring(keyring_name)
     try:
-        keyring.delete_password(keyring_name, "username")
-        keyring.delete_password(keyring_name, username)
+        keyring.delete_password(keyring_name, str(username))
+        keyring.delete_password(keyring_name, str(password))
     except keyring.errors.PasswordDeleteError as e:
         print(e)
         exit(0)

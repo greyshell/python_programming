@@ -1,7 +1,6 @@
 ## Description
 `creds_manager.py` - a wrapper to the linux `keyring` that manages the credential in a secure way.
 
-
 ### Usage
 ```
 usage: creds_manager.py [-h] {set,get,del} ...
