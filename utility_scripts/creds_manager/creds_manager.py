@@ -60,8 +60,7 @@ def del_keyring(keyring_name):
         keyring.delete_password(keyring_name, username)
     except keyring.errors.PasswordDeleteError as e:
         print(e)
-        return False
-    return True
+        exit(0)
 
 
 if __name__ == "__main__":
@@ -79,7 +78,7 @@ if __name__ == "__main__":
         usr, passwd = get_keyring(args.name)
         print(f"username: {usr}, password: {passwd}")
     elif args.cmd == "del":
-        if del_keyring(args.name):
-            print(f"deleted -> {args.name}")
+        del_keyring(args.name)
+        print(f"deleted keyring: {args.name}")
     else:
         my_input.parser.print_help(sys.stderr)
