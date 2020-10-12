@@ -1,7 +1,8 @@
 ## Description
-`lab-vpn.py` helps to automate the openvpn connection for the InfoSec labs (i.e. PWK / CTP / WAPTx / AWAE).
+`lab_vpn.py` helps to automate the openvpn connection for the InfoSec labs (i.e. PWK / CTP / WAPTx / AWAE).
 
-note: store your vpn and email password inside linux keyring.
+note:
+- you can use `creds_manager.py` helper script to store your vpn and email password in linux keyring.
 
 ### Usage
 ```
@@ -16,7 +17,6 @@ optional arguments:
 example:
 python lab_vpn.py -c asinha.json
 
-
 # set email creds into the keyring
 keyring set email username
 - provide the email_id
@@ -24,9 +24,9 @@ keyring set email email_id
 - provide the password
 
 # set offsec vpn creds into the keyring
-keyring set offsec_asinha username
-- provide the offsecID
-keyring set offsec_asinha offsecID
+keyring set offsec username
+- provide the userid
+keyring set offsec user_id
 - provide the password
 ```
 

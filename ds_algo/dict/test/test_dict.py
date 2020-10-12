@@ -20,6 +20,8 @@ def main():
         "carol": "it"
     }
 
+    print(f"{name_dept}")  # ordered structure
+
     # look up: method 1
     try:
         dept = name_dept["no_key"]  # throws exception when the key is not found
@@ -44,11 +46,11 @@ def main():
     print(f"{name_dept.items()}")  # returns a list, each entry is tuple
 
     # print the dict: method 1
-    for key, value in name_dept.items():
+    for key, value in name_dept.items():  # unpacks the tuples
         print(f"{key}: {value}")
 
     # print the dict: method 2
-    for key, value in name_dept:
+    for key in name_dept:  # __iter__() => iterates over the keys, similar to name_dept.keys()
         print(f"{key}: {name_dept[key]}")
 
 

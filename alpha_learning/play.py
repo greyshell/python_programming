@@ -1,3 +1,5 @@
+# helper script to create the hashtable
+
 from math import sqrt
 
 MAX = 10 ** 6
