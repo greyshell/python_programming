@@ -1,0 +1,24 @@
+arch: amd64          # optional, this is default, routes to a full VM
+os: linux            # optional, this is default
+dist: xenial          # or bionic | xenial | trusty | precise with xenial as default
+language: c
+
+before_install:
+- sudo apt-get update
+- sudo apt install -y software-properties-common
+- sudo add-apt-repository -y ppa:deadsnakes/ppa
+- sudo apt update
+- sudo apt install -y python3.7
+install:
+  - pip3.7 install -r requrements.txt
+before_script:
+  - echo 'parse git comment'
+script:
+- python3.7 --version
+- python3.7 .travis/slack_alert.py
+after_script:
+- echo 'running after_script'
+notifications:
+  email:
+   on_success: change
+   on_failure: always
