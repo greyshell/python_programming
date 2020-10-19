@@ -1,4 +1,4 @@
 ## Description
 
-- learning system, network, web, ds_algo and crypto programming.
-- utility scripts to resolve my workflows
+- Learning system, network, web and crypto programming.
+- `utility_scripts` is created to resolve my personal workflows.
