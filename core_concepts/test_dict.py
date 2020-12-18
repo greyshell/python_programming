@@ -39,7 +39,7 @@ def main():
     print(f"{dept}")
 
     # get all keys
-    print(f"{name_dept.keys()}")  # retuens a object
+    print(f"{name_dept.keys()}")  # returns a object
     # get all values
     print(f"{name_dept.values()}")  # returns a object
     # get key and values in tuple format
