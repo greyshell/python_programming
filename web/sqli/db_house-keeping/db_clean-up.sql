@@ -1,10 +1,13 @@
 # author: greyshell
-# usage: mysql -u root -p < resource.sql
-# alternale usage for automation: mysql -u root --password=mypass < resource.sql
+# description: truncate tables
+# usage: mysql -u root --password=<pass> < db_clean.sql
+# lab: sqli
 
-# sql injection: case02, clear the posts
-delete from vulnapp.tbl_post02 where user NOT LIKE 'asinha%';
+# case02: clear all posts, not created by 'asinha'
+DELETE FROM vulnapp.tbl_post02 WHERE user NOT LIKE 'asinha%';
 
-# sql injection: case03, clear the posts
-delete from vulnapp.tbl_post03 where user LIKE 'anonymous-%';
-update vulnapp.tbl_post03 set age = 25, comment = 'Hello', city = 'San Jose' where user = 'admin';
+# case03: clear all posts, created by default anonymous user
+DELETE FROM vulnapp.tbl_post03 WHERE user LIKE 'anonymous-%';
+
+# case03: reset to the default settings
+UPDATE vulnapp.tbl_post03 SET age = 25, comment = 'Hello', city = 'San Jose' WHERE user = 'admin';

@@ -34,7 +34,7 @@ class TestMySQL:
             return False, e
 
     def unsafe_select_query(self, user):
-        # creating the cursor
+        # create the cursor
         cursor = self.db.conn.cursor()
         rows = None
         try:
