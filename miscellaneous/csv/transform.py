@@ -3,6 +3,7 @@
 # author: greyshell
 # description: update the csv file with branch name
 
+# how to use the script:
 # pip -r requirement.txt
 # python transform.py -m master.csv -t month.csv -o final.csv
 
