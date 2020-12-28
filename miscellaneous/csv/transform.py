@@ -33,7 +33,6 @@ def auto_triage(master_csv, month_csv, output_csv):
         # pick up the first column
         client_code = row[1][0]
         branch = row[1][2]
-        # print(f"{client_code}: {branch}")
         lookup[client_code] = branch
 
     for i, row in month.iterrows():
