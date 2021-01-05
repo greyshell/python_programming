@@ -14,9 +14,9 @@ import sys
 class UserInput:
     def __init__(self):
         self.parser = argparse.ArgumentParser(
-                description="create blog posts for octopress")
+            description="create blog posts for octopress")
         self.parser.add_argument(
-                "-c", "--config", metavar="", help="provide a .json file", required=True)
+            "-c", "--config", metavar="", help="provide a .json file", required=True)
 
 
 class Octopress:
@@ -143,10 +143,11 @@ class Octopress:
                         continue
 
                     if date != "" and comments == "true":
+                        print(f"[x] {file} => comment : true")
                         # remove unused images
                         asset_dir = root + "/" + name + ".assets/"
                         self._remove_unused_image(
-                                asset_dir, absolute_file_path, self._skipped_files)
+                            asset_dir, absolute_file_path, self._skipped_files)
 
                         # prepare the file name
                         new_file_name = date + "-" + name.replace('_', '-') + ".markdown"

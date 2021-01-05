@@ -1,11 +1,7 @@
 #!/usr/bin/env python3
 
-# author: greyshell
+# author: asinha
 # description: update the csv file with branch name
-
-# how to use the script:
-# pip -r requirement.txt
-# python transform.py -m master.csv -t month.csv -o final.csv
 
 import sys
 import argparse
@@ -15,10 +11,10 @@ import pandas as pd
 class UserInput:
     def __init__(self):
         self.parser = argparse.ArgumentParser(
-            description="csv formatting")
-        self.parser.add_argument("-m", "--master_csv", metavar="", help="master csv",
+            description="csv update")
+        self.parser.add_argument("-m", "--master_csv", metavar="", help="previous csv",
                                  required=True)
-        self.parser.add_argument("-t", "--month_csv", metavar="", help="monthly csv", required=True)
+        self.parser.add_argument("-t", "--month_csv", metavar="", help="latest csv", required=True)
         self.parser.add_argument("-o", "--output_csv", metavar="", help="output csv", required=True)
 
 
