@@ -7,7 +7,7 @@ import random
 import string
 from flask import Flask, render_template
 from flask import request
-from web.sqli.models import *
+from models import *
 from mysql_db import MySQLdb
 
 templates_path = os.path.abspath(
@@ -18,7 +18,8 @@ app = Flask(__name__, template_folder=templates_path)
 
 @app.before_request
 def before_request_func():
-    MySQLdb()  # create database
+    # create the database
+    MySQLdb(host="localhost", db_name="vulnapp")
 
 
 @app.after_request
@@ -86,4 +87,4 @@ def tbl_post03():
 
 
 if __name__ == '__main__':
-    app.run(port=9000, debug=True)
+    app.run(host='0.0.0.0', port=9000, debug=True)

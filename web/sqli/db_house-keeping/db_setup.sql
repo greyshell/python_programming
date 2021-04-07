@@ -12,9 +12,9 @@ comment VARCHAR(30) NOT NULL,
 user VARCHAR(10) NOT NULL
 );
 
-INSERT INTO vulnapp.tbl_post01 (comment, user) VALUES ('hola', 'pedro');
-INSERT INTO vulnapp.tbl_post01 (comment, user) VALUES ('hi', 'usman');
-INSERT INTO vulnapp.tbl_post01 (comment, user) VALUES ('ola', 'amol');
+INSERT INTO vulnapp.tbl_post01 (comment, user) VALUES ('hola', 'bob');
+INSERT INTO vulnapp.tbl_post01 (comment, user) VALUES ('hi', 'tom');
+INSERT INTO vulnapp.tbl_post01 (comment, user) VALUES ('ola', 'mut');
 
 
 # case02:

@@ -8,7 +8,7 @@ import argparse
 import pandas as pd
 
 
-class UserInput:
+class MyUtils:
     def __init__(self):
         self.parser = argparse.ArgumentParser(
             description="csv update")
@@ -45,7 +45,7 @@ def auto_triage(master_csv, month_csv, output_csv):
 
 
 if __name__ == "__main__":
-    my_input = UserInput()
+    my_input = MyUtils()
     args = my_input.parser.parse_args()
 
     if len(sys.argv) == 1:

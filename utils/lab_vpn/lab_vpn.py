@@ -23,7 +23,7 @@ PROGRAM_LOGO = """
 """
 
 
-class UserInput:
+class MyUtils:
     def __init__(self):
         self.parser = argparse.ArgumentParser(
                 description="automate the openvpn lab connection")
@@ -156,7 +156,7 @@ class LoginVpn:
 
 
 if __name__ == "__main__":
-    my_input = UserInput()
+    my_input = MyUtils()
     args = my_input.parser.parse_args()
 
     if len(sys.argv) == 1:

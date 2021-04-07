@@ -2,12 +2,15 @@
 
 # author: greyshell
 
+import sys
+
+sys.path.append("..")
 from mysql_db import MySQLdb
 
 
 class TblPost01:
     def __init__(self):
-        self.db = MySQLdb()
+        self.db = MySQLdb(host="localhost", db_name="vulnapp")
 
     def unsafe_select_query(self, user):
         # creating the cursor

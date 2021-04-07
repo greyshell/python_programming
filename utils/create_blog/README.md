@@ -1,13 +1,13 @@
 ## Description
 
-`octo_prepare.py` is used to generate posts for `Greyshell's Diary`.
+`create_blog.py` is used to generate posts for my `Greyshell's Diary`.
 
 ### How to use
 
 1. write down notes in `markdown` format.
 2. when you paste a image, it gets stored inside the filename.assets folder.
 3. If that note needs to be published then set `comments: true` and set a categories like `categories: windows-exploit-dev`.
-    - Available categories: windows-exploit-dev, linux-exploit-dev, web-security, network-security, capture-the-flag
+    - Available categories: `windows-exploit-dev`, `linux-exploit-dev`, `web-security`, `network-security`, `capture-the-flag`
 4. use markdown preview for `view only` mode.
 5. how to include / show the content of a .txt file: create a `.py` file and copy the content inside the multiline comment section.
 6. how to use python code: copy the python file into the `octopress/source/artifacts/<filename>.assets` folder directly.
@@ -25,7 +25,7 @@
 
 ### Usage
 ```
-usage: octo_prepare.py [-h] -c
+usage: create_blog.py [-h] -c
 
 create blog posts for octopress
 

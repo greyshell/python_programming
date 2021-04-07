@@ -2,12 +2,14 @@
 
 # author: greyshell
 
+import sys
+sys.path.append("..")
 from mysql_db import MySQLdb
 
 
 class TblPost02:
     def __init__(self):
-        self.db = MySQLdb()
+        self.db = MySQLdb(host="localhost", db_name="vulnapp")
 
     def unsafe_insert_query(self, comment, pin, age, user):
         # create the cursor

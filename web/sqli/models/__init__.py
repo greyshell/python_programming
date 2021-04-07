@@ -2,6 +2,6 @@
 
 # author: greyshell
 
-from tblpost01 import *
-from tblpost02 import *
-from tblpost03 import *
+from .tblpost01 import *
+from .tblpost02 import *
+from .tblpost03 import *

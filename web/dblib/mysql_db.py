@@ -4,7 +4,7 @@
 # description: setup mysql db connection
 
 import mysql.connector
-import keyring
+import os
 
 
 class MySQLdb:
@@ -17,9 +17,18 @@ class MySQLdb:
             create a database connection for MySQL database
             """
             try:
+                import keyring
+                username = keyring.get_password('mysql', 'username')
+                password = keyring.get_password('mysql', 'password')
+            except ImportError as err:
+                print(f"inside the container: {err}")
+                username = os.environ.get("username")
+                password = os.environ.get("password")
+
+            try:
                 # pick database credentials from keyring
-                self.conn = mysql.connector.connect(user=keyring.get_password('mysql', 'username'),
-                                                    password=keyring.get_password('mysql', 'password'),
+                self.conn = mysql.connector.connect(user=username,
+                                                    password=password,
                                                     host='localhost',
                                                     database='vulnapp')
 

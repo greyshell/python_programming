@@ -10,7 +10,7 @@ import sys
 import keyring
 
 
-class UserInput:
+class MyUtils:
     def __init__(self):
         self.parser = argparse.ArgumentParser(
                 description="a helper script / wrapper to perform all keyring operations")
@@ -64,7 +64,7 @@ def del_keyring(keyring_name):
 
 
 if __name__ == "__main__":
-    my_input = UserInput()
+    my_input = MyUtils()
     args = my_input.parser.parse_args()
 
     if len(sys.argv) == 1:
