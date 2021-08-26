@@ -24,18 +24,18 @@ def main():
 
     # look up: method 1
     try:
-        dept = name_dept["no_key"]  # throws exception when the key is not found
+        dept = name_dept["alice"]  # throws exception when the key is not found
         print(f"{dept}")
     except KeyError as e:
         print(f"error: {e}")
 
     # look up: method 2
-    if "key" in name_dept:  # inefficient because it queries the dict twice
-        dept = name_dept["no_key"]
+    if "alice" in name_dept:
+        dept = name_dept["alice"]  # inefficient because it queries the dict twice
         print(f"{dept}")
 
     # look up: method 3 (recommended)
-    dept = name_dept.get("alice", "no_key")  # provides the support for default value
+    dept = name_dept.get("alice", "not found")  # provides the support for default value
     print(f"{dept}")
 
     # get all keys
@@ -51,7 +51,7 @@ def main():
 
     # print the dict: method 2
     for key in name_dept:  # __iter__() => iterates over the keys, similar to name_dept.keys()
-        print(f"{key}: {name_dept[key]}")
+        print(f"{key}: {name_dept[key]}")  # does not occurs the key not found
 
 
 if __name__ == '__main__':
