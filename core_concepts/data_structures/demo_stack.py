@@ -1,7 +1,6 @@
 # !/usr/bin/env python3
 
 # author: greyshell
-# description: stack using list
 
 
 def main():

@@ -3,7 +3,7 @@
 # command: python -m unittest test_two_sum.TestSolution
 
 import unittest
-from two_sum import LeetCode
+from two_sum import two_sum
 
 
 class TestSolution(unittest.TestCase):
@@ -34,10 +34,10 @@ class TestSolution(unittest.TestCase):
         - expected -> means what we are getting from the program
         :return:
         """
-        self.assertEqual(LeetCode.solution([12, 7, 11, 15, 35], 50), [3, 4])
+        self.assertEqual(two_sum([12, 7, 11, 15, 35], 50), [3, 4])
 
     def test_case_2(self):
-        self.assertEqual(LeetCode.solution([12, 7, 11, 15, 35], 19), [0, 1])
+        self.assertEqual(two_sum([12, 7, 11, 15, 35], 19), [0, 1])
 
     def tearDown(self):
         """

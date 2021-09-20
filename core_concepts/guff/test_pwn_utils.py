@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# how to use: python test_pwn_utils_lib.py -m true local -b vuln -g true
+# how to use: python test_pwn_utils.py -m true local -b vuln -g true
 
 from pwn import *
 from pwn_utils import PwnUtils
@@ -15,13 +15,13 @@ def exploit(conn):
 
 
 def main():
-    my_input = PwnUtils()
-    arguments = my_input.parser.parse_args()
+    inp = PwnUtils()
+    arguments = inp.parser.parse_args()
     connection = ""
 
     # run the script without any argument
     if len(sys.argv) == 1:
-        my_input.parser.print_help(sys.stderr)
+        inp.parser.print_help(sys.stderr)
         sys.exit(1)
 
     # exploiting local binary
