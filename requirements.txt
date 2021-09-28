@@ -95,3 +95,5 @@ wcwidth==0.2.5
 Werkzeug==1.0.1
 wget==3.2
 WTForms==2.3.3
+
+pytest~=6.2.5

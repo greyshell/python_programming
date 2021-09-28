@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # author: greyshell
-# how to use: python test_pwn_utils.py -m true local -b vuln -g true
+# how to use: python demo_pwn_utils.py -m true local -b vuln -g true
 
 from pwn import *
 from pwn_utils import PwnUtils
