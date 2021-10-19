@@ -13,18 +13,15 @@ from colorama import Fore
 
 
 def calculate_file_hash(f_name):
-    """
-    calculate hash of a given file
-    :param f_name:
-    :return:
-    """
+    """calculate hash of a given file"""
     BLOCK_SIZE = 65536  # The size of each read from the file
     file_hash = hashlib.sha512()  # create the hash object, algo used sha512
-    with open(f_name, 'rb') as file:  # open the file to read it's bytes
-        fb = file.read(BLOCK_SIZE)  # read from the file. take in the amount declared in BLOCK_SIZE
+
+    with open(f_name, 'rb') as handle:  # open the file to read it's bytes
+        fb = handle.read(BLOCK_SIZE)  # read from the file. take in the amount declared in BLOCK_SIZE
         while len(fb) > 0:  # while there is still data being read from the file
             file_hash.update(fb)  # update the hash
-            fb = file.read(BLOCK_SIZE)  # read the next block from the file
+            fb = handle.read(BLOCK_SIZE)  # read the next block from the file
 
     return file_hash.hexdigest()  # return the the hexadecimal digest of the hash
 

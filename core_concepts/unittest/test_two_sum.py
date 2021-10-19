@@ -14,7 +14,6 @@ class TestSolution(unittest.TestCase):
         optional ->
         run one time before staring the test
         can be used to populate a database to set up testing
-        :return:
         """
         print("running setUpClass method")
 
@@ -23,28 +22,22 @@ class TestSolution(unittest.TestCase):
         optional ->
         run this before every single test function
         can be used to add files to a directory / set variables
-        :return:
         """
         print("running setUp method method")
 
-    def test_case_1(self):
-        """
-        verify the correctness of the solution
-        - actual -> means what we are providing into the assert statement
-        - expected -> means what we are getting from the program
-        :return:
-        """
-        self.assertEqual(two_sum([12, 7, 11, 15, 35], 50), [3, 4])
+    def test_two_sum(self):
+        # order: assert(expected, actual)
+        # testcase 1
+        self.assertEqual([3, 4], two_sum([12, 7, 11, 15, 35], 50))
 
-    def test_case_2(self):
-        self.assertEqual(two_sum([12, 7, 11, 15, 35], 19), [0, 1])
+        # testcase 2
+        self.assertEqual([0, 1], two_sum([12, 7, 11, 15, 35], 19))
 
     def tearDown(self):
         """
         optional ->
         run this after every single test
         can be used to delete files from directory those created during testing / unset variables
-        :return:
         """
         print("running tearDown method")
 
@@ -53,7 +46,6 @@ class TestSolution(unittest.TestCase):
         """
         optional ->
         can be used to clean up the database to start other testing from clean state
-        :return:
         """
         print("running tearDownClass method")
 

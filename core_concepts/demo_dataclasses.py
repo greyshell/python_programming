@@ -77,10 +77,9 @@ class Department:
 
 
 class Departmentv2:
-    def __init__(self, name, inventory=None):
-        # fix the bug
+    def __init__(self, name, inventory=None):  # fix the bug
         if inventory is None:
-            inventory = []
+            inventory = []  # create the empty list when constructor invokes
         self.name = name
         self.inventory = inventory
 
@@ -93,27 +92,47 @@ class Departmentv3:
     # default_factory uses callable to generate a new value each time when the class is instanciated
 
 
+@dataclass
+class Departmentv4:
+    name: str = field()
+    # inventory: list = [] -> throws ValueError
+    inventory: dict = field(default_factory=dict)
+
+
 if __name__ == "__main__":
+    cse = Departmentv4("cse")
+    cse.inventory[1] = 'abhijit'
+    cse.inventory[2] = 'partha'
+    cse.inventory[3] = 'sarbajit'
+    print(cse.inventory)
+
+    ee = Departmentv4("ee")
+    ee.inventory[1] = 'ani'
+    ee.inventory[2] = 'dim'
+    ee.inventory[3] = 'atanu'
+    print(ee.inventory)
+    print()
+
     cse = Department("cse")
     cse.inventory.append("asinha")
     ee = Department("ee")
     ee.inventory.append("ghatang")
-
-    print(cse.inventory)  # ghatang is added
+    print(cse.inventory)  # bug: ghatang is added
+    print()
 
     cse = Departmentv2("cse")
     cse.inventory.append("asinha")
     ee = Departmentv2("ee")
     ee.inventory.append("ghatang")
-
     print(cse.inventory)  # ghatang is not added
+    print()
 
     cse = Departmentv3("cse")
     cse.inventory.append("asinha")
     ee = Departmentv3("ee")
     ee.inventory.append("ghatang")
-
     print(cse.inventory)  # ghatang is not added
+    print()
 
     amount = Money(142, 7)
     print(str(amount))

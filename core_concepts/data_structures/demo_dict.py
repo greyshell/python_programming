@@ -39,11 +39,11 @@ def main():
     print(f"{dept}")
 
     # get all keys
-    print(f"{name_dept.keys()}")  # returns a object
+    print(f"{name_dept.keys()}")  # returns a iterable object
     # get all values
-    print(f"{name_dept.values()}")  # returns a object
+    print(f"{name_dept.values()}")  # returns a iterable object
     # get key and values in tuple format
-    print(f"{name_dept.items()}")  # returns a list, each entry is tuple
+    print(f"{name_dept.items()}")  # returns a iterable object where each entry is tuple
 
     # print the dict: method 1
     for key, value in name_dept.items():  # unpacks the tuples
