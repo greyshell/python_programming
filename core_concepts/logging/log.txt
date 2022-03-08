@@ -1,2 +1,2 @@
-2021-08-24 19:14:43,075 - ERROR - /home/kali/Dropbox/pentest/code_dev/python/core_concepts/logging/demo_logger.py:40 - error
-2021-08-24 19:14:43,075 - CRITICAL - /home/kali/Dropbox/pentest/code_dev/python/core_concepts/logging/demo_logger.py:41 - critical
+2021-11-19 04:53:42,222 - ERROR - /home/kali/Dropbox/pentest/code_dev/python/core_concepts/logging/demo_logger.py:39 - error
+2021-11-19 04:53:42,222 - CRITICAL - /home/kali/Dropbox/pentest/code_dev/python/core_concepts/logging/demo_logger.py:40 - critical

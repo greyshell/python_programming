@@ -1,0 +1,119 @@
+{
+  "errors": [],
+  "results": [
+    {
+      "check_id": "rules.use-decimalfield-for-money",
+      "end": {
+        "col": 34,
+        "line": 12,
+        "offset": 405
+      },
+      "extra": {
+        "is_ignored": false,
+        "lines": "    old_fee = models.FloatField()",
+        "message": "Found a FloatField used for variable old_fee. Use DecimalField for currency fields to avoid float-rounding errors.",
+        "metadata": {},
+        "metavars": {
+          "$F": {
+            "abstract_content": "old_fee",
+            "end": {
+              "col": 12,
+              "line": 12,
+              "offset": 383
+            },
+            "start": {
+              "col": 5,
+              "line": 12,
+              "offset": 376
+            },
+            "unique_id": {
+              "md5sum": "4c8b5e627780b14c45aa242d4e828437",
+              "type": "AST"
+            }
+          },
+          "$M": {
+            "abstract_content": "Product",
+            "end": {
+              "col": 14,
+              "line": 4,
+              "offset": 44
+            },
+            "start": {
+              "col": 7,
+              "line": 4,
+              "offset": 37
+            },
+            "unique_id": {
+              "md5sum": "60386a5af71f84857cadaf59b7a42a3f",
+              "type": "AST"
+            }
+          }
+        },
+        "severity": "ERROR"
+      },
+      "path": "src/eval_unsafe.py",
+      "start": {
+        "col": 5,
+        "line": 12,
+        "offset": 376
+      }
+    },
+    {
+      "check_id": "rules.use-decimalfield-for-money",
+      "end": {
+        "col": 36,
+        "line": 14,
+        "offset": 458
+      },
+      "extra": {
+        "is_ignored": false,
+        "lines": "    price_inc = models.FloatField()",
+        "message": "Found a FloatField used for variable price_inc. Use DecimalField for currency fields to avoid float-rounding errors.",
+        "metadata": {},
+        "metavars": {
+          "$F": {
+            "abstract_content": "price_inc",
+            "end": {
+              "col": 14,
+              "line": 14,
+              "offset": 436
+            },
+            "start": {
+              "col": 5,
+              "line": 14,
+              "offset": 427
+            },
+            "unique_id": {
+              "md5sum": "cb4d5742d6d134e5b03b43b05918d2bb",
+              "type": "AST"
+            }
+          },
+          "$M": {
+            "abstract_content": "Product",
+            "end": {
+              "col": 14,
+              "line": 4,
+              "offset": 44
+            },
+            "start": {
+              "col": 7,
+              "line": 4,
+              "offset": 37
+            },
+            "unique_id": {
+              "md5sum": "60386a5af71f84857cadaf59b7a42a3f",
+              "type": "AST"
+            }
+          }
+        },
+        "severity": "ERROR"
+      },
+      "path": "src/eval_unsafe.py",
+      "start": {
+        "col": 5,
+        "line": 14,
+        "offset": 427
+      }
+    }
+  ]
+}

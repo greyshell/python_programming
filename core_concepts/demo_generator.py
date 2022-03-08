@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import re
 import sys
 
@@ -67,6 +68,12 @@ def words_in_text_improved(path):
         yield word
 
 
+def file_hash(path):
+    with open(path) as handle:
+        print(next(handle))
+        print(next(handle))
+
+
 if __name__ == '__main__':
     MAX = 5
 
@@ -94,3 +101,5 @@ if __name__ == '__main__':
     print("printing all words:", end="\n")
     for word in words_in_text_improved(file):
         print(word)
+
+    file_hash(file)

@@ -5,10 +5,10 @@
 import logging
 
 
-def make_logger():
-    logger_ = logging.getLogger()
+def init_logger():
+    mylogger = logging.getLogger()
     # set the default thresold to minimum
-    logger_.setLevel(logging.DEBUG)
+    mylogger.setLevel(logging.DEBUG)
     # set the default formatter
     default_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
@@ -16,20 +16,20 @@ def make_logger():
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.DEBUG)
     console_handler.setFormatter(default_formatter)
-    logger_.addHandler(console_handler)
+    mylogger.addHandler(console_handler)
 
     # create file handler with a higher log level
     file_handler = logging.FileHandler(filename="log.txt", mode="w")
     file_handler.setLevel(logging.ERROR)
     file_handler_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(pathname)s:%(lineno)s - %(message)s')
     file_handler.setFormatter(file_handler_formatter)
-    logger_.addHandler(file_handler)
+    mylogger.addHandler(file_handler)
 
-    return logger_
+    return mylogger
 
 
 # global variable: logger obj can be accessible from any method
-logger = make_logger()
+logger = init_logger()
 
 if __name__ == '__main__':
     # pattern 1

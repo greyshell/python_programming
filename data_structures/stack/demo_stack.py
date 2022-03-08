@@ -5,7 +5,7 @@
 
 def main():
     """
-    - python list is backed by dynamic array, so occasionally it needs to be resized when item
+    - python list is backed by dynamic list, so occasionally it needs to be resized when item
     is added / removed
     - it does not guarantee the stable O(1) push and pop
     - however, it provides the amortize time complexity is O(1) when the item is added / remove at
@@ -14,7 +14,6 @@ def main():
     existing elements
     are required
     - no parallel processing support / it handles locking and unlocking
-    :return:
     """
     s = list()
     # push: O(1), stack grows from left to right
@@ -27,7 +26,7 @@ def main():
     print(f"display the stack elements: {s}")
 
     # peek, O(1)
-    data = s[-1]
+    data = s[-1]  # peek the last element
     print(f"peek the stack top: {data}")
 
     # pop: O(1), stack shrinks from right to left

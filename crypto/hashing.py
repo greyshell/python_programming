@@ -12,6 +12,14 @@ import scrypt
 from colorama import Fore
 
 
+def file_hash(name):
+    m = hashlib.sha512()
+    with open(name) as handle:
+        for line in handle:
+            m.update(line)
+    return m.hexdigest()
+
+
 def calculate_file_hash(f_name):
     """calculate hash of a given file"""
     BLOCK_SIZE = 65536  # The size of each read from the file
@@ -140,7 +148,7 @@ def demo_hmac():
     print(Fore.MAGENTA, f"[+] usage of hmac library:")
     key = "this_is_key"
     message = "secret"
-    # key and message should be in byte array format
+    # key and message should be in byte list format
     r = hmac.new(key=key.encode(), msg=message.encode(), digestmod=None)
     result = r.hexdigest()
     print(Fore.BLUE, f"hmac => {result}")

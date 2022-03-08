@@ -1,0 +1,17 @@
+# how to run: semgrep --config=r/python.flask --config rules
+# semgrep --config rules src -o results.json --json
+rules:
+  - id: use-decimalfield-for-money
+    message: Found a FloatField used for variable $F. Use DecimalField for currency fields to avoid float-rounding errors.
+    languages: [ python ]
+    severity: ERROR
+    patterns:
+    - pattern-inside: |
+        class $M(...):
+          ...
+    - pattern: $F = django.db.models.FloatField(...)
+    - metavariable-regex:
+        metavariable: '$F'
+        regex: '.*(price|fee|salary).*'
+
+
