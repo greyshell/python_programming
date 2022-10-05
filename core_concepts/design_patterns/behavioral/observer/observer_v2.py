@@ -21,9 +21,9 @@ class SubscriberTwo:
 
 class Publisher:
     def __init__(self):
-        self.subscribers = dict()
+        self.subscribers = dict()  # key: subscriber, value: callback function object
 
-    def register(self, who, callback=None):  # callback can be any function or method
+    def register(self, who, callback=None):  # callback can be any function object but have same signature
         if callback is None:
             callback = who.update  # update() is a default call back method
         self.subscribers[who] = callback
@@ -47,4 +47,4 @@ if __name__ == "__main__":
     pub2.dispatch("this is lunch time")
 
     pub2.unregister(bob)
-    pub2.dispatch("this is dinner time")
+    pub2.dispatch("this is dinner time")  # bob will not get the notification

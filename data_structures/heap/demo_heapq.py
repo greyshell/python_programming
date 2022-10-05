@@ -6,7 +6,7 @@
 import heapq
 
 
-class MaxHeapNode(object):
+class MaxHeapNode:
     def __init__(self, key):
         self.key = key
 
@@ -34,18 +34,22 @@ def demo_max_heap():
     print(f"========================================")
     print(f"demo max heap ")
     print(f"========================================")
-    # create a max heap that stores an object (key, index, name) and the key is key
-    max_heap = list()
+    # build a max heap from an existing list
+    nums = [12, 7, 11, 15, 35, 17]
+    max_heap = [MaxHeapNode(n) for n in nums]  # create a obj list
+    heapq.heapify(max_heap)
 
-    heapq.heappush(max_heap, MaxHeapNode(17))
-    heapq.heappush(max_heap, MaxHeapNode(1000))
-    heapq.heappush(max_heap, MaxHeapNode(250))
-    heapq.heappush(max_heap, MaxHeapNode(500))
+    # peek the max item
+    print(f"max value: {max_heap[0].key}")
+    # pop the max item
+    print(f"popped item: {heapq.heappop(max_heap).key}")
+    # peek again
+    print(f"max value: {max_heap[0].key}")
 
-    print(f"max value {max_heap[0]}")
-    node = heapq.heappop(max_heap)
-    print(f"popped item: {node.key}")
-    print(f"max value {max_heap[0]}")
+    # add / push item in the heap
+    heapq.heappush(max_heap, MaxHeapNode(40))
+    # peek again
+    print(f"max value: {max_heap[0].key}")
 
 
 class HeapSatelliteNode(object):
@@ -97,6 +101,25 @@ def heap_sort(nums):
 
 
 def main():
+    # demo max heap
+    # demo_max_heap()
+    # build a max heap from an existing list
+    nums = [12, 7, 11, 15, 35, 17]
+    max_heap = [MaxHeapNode(n) for n in nums]  # create a obj list
+    heapq.heapify(max_heap)
+
+    # peek the max item
+    print(f"max value: {max_heap[0].key}")
+    # pop the max item
+    print(f"popped item: {heapq.heappop(max_heap).key}")
+    # peek again
+    print(f"max value: {max_heap[0].key}")
+
+    # add / push item in the heap
+    heapq.heappush(max_heap, MaxHeapNode(40))
+    # peek again
+    print(f"max value: {max_heap[0].key}")
+    """
     min_heap = [12, 7, 11, 15, 35, 17]
 
     print(f"========================================")
@@ -165,6 +188,7 @@ def main():
 
     # demo satellite data in the max heap
     demo_max_satellite_heap()
+    """
 
 
 if __name__ == '__main__':

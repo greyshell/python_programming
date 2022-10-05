@@ -1,9 +1,22 @@
 {
-  "src_dir": "/Users/abhijitsinha/Dropbox/grey_diary/",
+  "src_dir": "/Users/abhijitsinha/Library/Mobile Documents/N39PJFAFEV~com~metaclassy~byword/Documents/grey_diary/",
   "dst_dir": "/Users/abhijitsinha/Dropbox/octopress/source/_posts/",
   "publish_flag": "true",
-  "blacklisted_dirs": [".git", ""],
-  "whitelisted_filetypes": [".md", ".markdown"],
-  "skipped_files": [".py", ".txt", ".java", ".c",".cpp", ".js"],
+  "blacklisted_dirs": [
+    ".git",
+    ""
+  ],
+  "whitelisted_filetypes": [
+    ".md",
+    ".markdown"
+  ],
+  "skipped_files": [
+    ".py",
+    ".txt",
+    ".java",
+    ".c",
+    ".cpp",
+    ".js"
+  ],
   "platform": "mac"
 }

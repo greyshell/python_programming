@@ -17,22 +17,7 @@ class Publisher:
         self.subscribers.add(who)
 
     def unregister(self, who):
-        self.subscribers.discard(who)
-
-    def dispatch(self, message):
-        for subscriber in self.subscribers:
-            subscriber.update(message)  # drawback: all subscriber need to have update method
-
-
-class Publisher:
-    def __init__(self):
-        self.subscribers = set()
-
-    def register(self, who):
-        self.subscribers.add(who)
-
-    def unregister(self, who):
-        self.subscribers.discard(who)
+        self.subscribers.discard(who)  # If the element passed to remove() doesn't exist, KeyError exception is thrown.
 
     def dispatch(self, message):
         for subscriber in self.subscribers:
@@ -53,4 +38,4 @@ if __name__ == "__main__":
 
     pub.unregister(tom)
     pub.unregister(alice)
-    pub.dispatch("this is dinner time")
+    pub.dispatch("this is dinner time")  # alice will not get the message

@@ -5,7 +5,7 @@
 
 
 def main():
-    # tuple: a finite ordered squence of values
+    # tuple: a finite ordered sequence of values
 
     # create tuple
     # tuple literals
@@ -22,7 +22,7 @@ def main():
 
     # tuple and string
     # similarities: finite length, indexing and slicing
-    # differences: string can only contains chars but tuple can contain any kind of value
+    # differences: string can only contain chars but tuple can contain any kind of value
     values = (0, 1, 2, 3, 4)
     new_values = values[0:3]  # returns a tuple
     print(new_values)
@@ -34,7 +34,7 @@ def main():
     # LHS and RHS should be matched else it will raise ValueError
     # utility: returning multiple values from a function
 
-    # check the existance of a value using in operator
+    # check the existence of a value using in operator
     if 3 in values:
         print("found")
 
