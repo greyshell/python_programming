@@ -1,5 +1,5 @@
 ## Description
-`lab_vpn.py` helps to automate the openvpn connection for the InfoSec labs (i.e. PWK / CTP / WAPTx / AWAE).
+`lab_vpn.py` helps to automate the openvpn connection.
 
 note:
 - you can use `creds_manager.py` helper script to store your vpn and email password in linux keyring.
