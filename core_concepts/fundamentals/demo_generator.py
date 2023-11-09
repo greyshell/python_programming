@@ -91,7 +91,7 @@ if __name__ == '__main__':
     for token in gen_token(body):
         print(token)
 
-    file = 'poem-simple.txt'
+    file = '../poem-simple.txt'
 
     print("printing all words:", end="\n")
     for word in words_in_text(file):

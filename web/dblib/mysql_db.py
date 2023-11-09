@@ -5,7 +5,7 @@
 
 import mysql.connector
 import os
-
+import keyring
 
 class MySQLdb:
     instance = None
@@ -17,13 +17,15 @@ class MySQLdb:
             create a database connection for MySQL database
             """
             try:
-                import keyring
-                username = keyring.get_password('mysql', 'username')
-                password = keyring.get_password('mysql', 'password')
-            except ImportError as err:
-                print(f"inside the container: {err}")
-                username = os.environ.get("username")
-                password = os.environ.get("password")
+                if os.environ.get("ENV") == "PROD":
+                    username = keyring.get_password('mysql', 'username')
+                    password = keyring.get_password('mysql', 'password')
+                else:
+                    # running from docker
+                    username = os.environ.get("username", default="root")
+                    password = os.environ.get("password", default="toor")
+            except TypeError:
+                raise ValueError("error retriving username or password from keyring")
 
             try:
                 # pick database credentials from keyring

@@ -1,6 +1,6 @@
 # author: greyshell
 # description: create db, tables and inset data
-# usage: mysql -u root --password=<pass> < db_setup.sql
+# usage: mysql -u root --password=<pass> < init.sql
 # lab: xss
 
 

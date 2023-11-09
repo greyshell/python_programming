@@ -187,4 +187,7 @@ cmake-build-*/
 .idea/caches/build_file_checksums.ser
 
 tmp/
+unarranged
 workshop/
+data_structures/coding_practice
+unarranged/test_coding/
