@@ -8,7 +8,6 @@ if __name__ == '__main__':
     # convert the message into byte format
     message = "hellow world"
 
-    # use of blake2b
     signed_digest = hmac.new(b'secret key',
                              digestmod=hashlib.sha3_256)
 
@@ -21,8 +20,8 @@ if __name__ == '__main__':
     print("")
 
     # instead of == to prevent timing attack
-    h = b"287bfd89577ed08f59e6fcbaf59a9e96a64c6d0d3d61f53a65a8d5ed50623472"
+    h = "287bfd89577ed08f59e6fcbaf59a9e96a64c6d0d3d61f53a65a8d5ed50623472"
 
-    # converting the hex digest to string then compare
+    # string to string compare
     compare_result = hmac.compare_digest(str(signed_digest.hexdigest()), h)
     print(f"digest compare result: {compare_result}")

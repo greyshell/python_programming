@@ -1,6 +1,4 @@
-# Notes
 
-```bash
 # list of openssl supported algorithms
 openssl dgst -list
 
@@ -34,5 +32,5 @@ openssl dgst -sha3-512 msg.txt
 # shake256
 # default XOF=32
 echo -n "hello world" | openssl dgst -shake256 -xoflen 64 
-```
+
  

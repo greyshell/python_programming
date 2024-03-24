@@ -27,11 +27,29 @@ class TestSolution(unittest.TestCase):
 
     def test_two_sum(self):
         # order: assert(expected, actual)
-        # testcase 1
-        self.assertEqual([3, 4], two_sum([12, 7, 11, 15, 35], 50))
 
-        # testcase 2
-        self.assertEqual([0, 1], two_sum([12, 7, 11, 15, 35], 19))
+        # order: assert(expected, actual)
+        # ref: Sedgewick Algorithms 4th edition, page 532
+        test_params = [
+            (
+                [3, 4],
+                {
+                    "nums": [12, 7, 11, 15, 35],
+                    "target": 50
+                }
+            ),
+            (
+                [0, 1],
+                {
+                    "nums": [12, 7, 11, 15, 35],
+                    "target": 19
+                }
+            )
+        ]
+        for expected, kwargs in test_params:
+            with self.subTest(**kwargs):
+                # expected, actual
+                self.assertEqual(expected, two_sum(**kwargs))
 
     def tearDown(self):
         """
