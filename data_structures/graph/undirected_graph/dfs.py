@@ -5,20 +5,39 @@
 
 from collections import deque
 
+# visited = list()
 
-def dfs(undirected_graph, start_vertex):
+
+def dfs_recursive(undirected_graph, vertex):
+    """
+    time: O(V + E)
+    space: O(V)
+    """
+    global node_visited
+
+    if vertex not in undirected_graph.keys():
+        raise ValueError("Vertex not found")
+
+    node_visited.append(vertex)
+    neighbors = undirected_graph[vertex]
+
+    for neighbor in neighbors:
+        if neighbor not in node_visited:
+            dfs_recursive(undirected_graph, neighbor)
+
+
+def dfs(undirected_graph, vertex) -> list:
     """
     depth first search
     time complexity: O(V + E)
     space complexity: O(V) -> to maintain the visited set
     """
-    result = []
     # check if the start vertex_name is present in the graph
-    if start_vertex not in undirected_graph.keys():
+    if vertex not in undirected_graph.keys():
         raise ValueError("Vertex not found")
 
     # track the visited vertices
-    visited = set()
+    visited = list()
 
     # add the start vertex_name into the stack
     stack = deque()
@@ -29,21 +48,19 @@ def dfs(undirected_graph, start_vertex):
         vertex = stack.pop()
         # check if the vertex_name is not in visited set then add into the visited set and process
         if vertex not in visited:
-            visited.add(vertex)
-            # print(vertex, end=" ")
-            result.append(vertex)
+            visited.append(vertex)
             # iterate all neighbors of that vertex
             neighbors = undirected_graph[vertex]
             for neighbor in neighbors:
                 # if that neighbor is not in the visited set then add that into the stack
                 if neighbor not in visited:
                     stack.append(neighbor)
-    return result
+    return visited
 
 
 if __name__ == '__main__':
     # ref: Sedgewick Algorithms 4th edition, page 532
-    UG = {
+    ug = {
         0: [1, 2, 5],
         1: [0, 2],
         2: [0, 1, 4],
@@ -53,4 +70,11 @@ if __name__ == '__main__':
     }
 
     print(f"dfs traversal: ")
-    print(dfs(UG, start_vertex=0))
+    start_vertex = 0
+    node_visited = list()
+    dfs_recursive(ug, start_vertex)
+    print(node_visited)
+
+    print(dfs(ug, start_vertex))
+
+
