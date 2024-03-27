@@ -14,6 +14,9 @@ def main():
     :return:
     """
     s = deque()
+    if len(s) == 0:
+        print('Deque is empty')
+        exit(0)
     # push: O(1), stack grows from left to right
     s.append(9)
     s.append(5)

@@ -23,8 +23,8 @@ def main():
     # not found any method for peek and display stack elements
 
     # pop: O(1)
-    data = s.get_nowait()
-    data = s.get_nowait()
+    # data = s.get_nowait()
+    # data = s.get_nowait()
 
     try:
         data = s.get_nowait()  # not wait for producer to add the element if the stack is empty
@@ -32,9 +32,9 @@ def main():
     except Exception as e:
         print(f"{e}")
 
-    exit(0)
+    # exit(0)
 
-    data = s.get()  # popped out the last stack element
+    # data = s.get()  # popped out the last stack element
     data = s.get()  # waits for ever as the stack is empty, producer needs to add an element
     print(f"popped: {data}")
 

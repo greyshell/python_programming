@@ -35,7 +35,7 @@ def two_sum(nums: list, target: int) -> list:
         found_value = lookup.get(complement)  # O(1), not found return None
         if found_value is None:
             key = nums[index]
-            lookup[key] = index
+            lookup[key] = index  #
 
         else:  # found the complement in the hash_map
             index_of_prev_number = lookup[complement]
@@ -47,8 +47,8 @@ def two_sum(nums: list, target: int) -> list:
 
 def main():
     # sample test case
-    nums = [12, 7, 11, 15, 35, 17, 2]
-    target = 26
+    nums = [12, 11, 7, 15, 35, 17, 2]
+    target = 19
 
     result = two_sum(nums, target)
 

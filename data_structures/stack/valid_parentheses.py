@@ -1,7 +1,11 @@
 from collections import deque
 
+"""
+ref: https://leetcode.com/problems/valid-parentheses/
+"""
 
-def valid_parentheses(s: str) -> bool:
+
+def solution(s: str) -> bool:
     """
     ref: https://leetcode.com/problems/valid-parentheses/
     """
@@ -42,5 +46,5 @@ def valid_parentheses(s: str) -> bool:
 if __name__ == "__main__":
     inp = ")()()"
     print(inp)
-    out = valid_parentheses(inp)
+    out = solution(inp)
     print(f"{out}")

@@ -71,9 +71,9 @@ if __name__ == '__main__':
 
     print(f"dfs traversal: ")
     start_vertex = 0
-    node_visited = list()
+    node_visited = list()  # empty list
     dfs_recursive(ug, start_vertex)
-    print(node_visited)
+    # print(node_visited)
 
     print(dfs(ug, start_vertex))
 
