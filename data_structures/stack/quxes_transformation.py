@@ -37,7 +37,7 @@ def solution(arrangement):
         else:
             qux_last = stack.pop()
             while True:
-                # backpropagating in case the previous quxes needs to be updated
+                # back_propagating in case the previous quxes needs to be updated
                 qux = _transform(qux_last, qux)
                 if (len(stack) == 0 or
                         stack[-1] == qux):

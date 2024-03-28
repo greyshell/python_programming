@@ -4,7 +4,7 @@ from valid_parentheses import (
 )
 
 
-class Test(unittest.TestCase):
+class TestSolution(unittest.TestCase):
 
     def test_solution(self):
         test_params = [
