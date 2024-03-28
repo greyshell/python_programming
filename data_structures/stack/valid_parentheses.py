@@ -6,9 +6,6 @@ ref: https://leetcode.com/problems/valid-parentheses/
 
 
 def solution(s: str) -> bool:
-    """
-    ref: https://leetcode.com/problems/valid-parentheses/
-    """
     # The stack to keep track of opening brackets.
     stack = []
 
