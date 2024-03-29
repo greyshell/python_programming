@@ -15,3 +15,6 @@ class TestProgram(unittest.TestCase):
                 # expected, actual
                 self.assertEqual(expected, remove_all_adjacent_duplicates(**kwargs))
 
+
+if __name__ == '__main__':
+    unittest.main()

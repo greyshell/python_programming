@@ -62,3 +62,10 @@ for n in range(low, high):
     if is_prime_flag is True:  # means break statement did not hit
         print(f"prime: {n}")
 
+
+# traverse an array in reverse order
+nums = [10, 50, 70, 60]
+for i in range(len(nums) - 1, -1, -1):
+    print(nums[i])
+
+print("end of loop")

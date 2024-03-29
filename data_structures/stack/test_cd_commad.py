@@ -27,3 +27,7 @@ class TestProgram(unittest.TestCase):
             with self.subTest(**kwargs):
                 # expected, actual
                 self.assertEqual(expected, cd_command(**kwargs))
+
+
+if __name__ == '__main__':
+    unittest.main()

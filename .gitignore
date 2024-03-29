@@ -189,5 +189,6 @@ cmake-build-*/
 tmp/
 unarranged
 workshop/
-data_structures/coding_practice
+data_structures/interview_practice
 unarranged/test_coding/
+

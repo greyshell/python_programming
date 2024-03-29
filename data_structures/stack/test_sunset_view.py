@@ -11,3 +11,7 @@ class TestProgram(unittest.TestCase):
         for expected, kwargs in test_params:
             self.subTest(**kwargs)
             self.assertEqual(expected, sunset_views(**kwargs))
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -5,8 +5,10 @@
 import unittest
 from two_sum import two_sum
 
+import time
 
-class TestSolution(unittest.TestCase):
+
+class TestProgram(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -23,28 +25,22 @@ class TestSolution(unittest.TestCase):
         run this before every single test function
         can be used to add files to a directory / set variables
         """
+        print("")
         print("running setUp method method")
 
+    def test_solution(self):
+        print(f"running: test_solution")
+
     def test_two_sum(self):
+        print(f"running: test_two_sum")
+        # time.sleep(5)
         # order: assert(expected, actual)
 
         # order: assert(expected, actual)
         # ref: Sedgewick Algorithms 4th edition, page 532
         test_params = [
-            (
-                [3, 4],
-                {
-                    "nums": [12, 7, 11, 15, 35],
-                    "target": 50
-                }
-            ),
-            (
-                [0, 1],
-                {
-                    "nums": [12, 7, 11, 15, 35],
-                    "target": 19
-                }
-            )
+            ([3, 4], {"nums": [12, 7, 11, 15, 35], "target": 50}),
+            ([0, 1], {"nums": [12, 7, 11, 15, 35], "target": 19})
         ]
         for expected, kwargs in test_params:
             with self.subTest(**kwargs):
@@ -58,6 +54,7 @@ class TestSolution(unittest.TestCase):
         can be used to delete files from directory those created during testing / unset variables
         """
         print("running tearDown method")
+        print("")
 
     @classmethod
     def tearDownClass(cls):
@@ -66,6 +63,7 @@ class TestSolution(unittest.TestCase):
         can be used to clean up the database to start other testing from clean state
         """
         print("running tearDownClass method")
+        print("")
 
 
 if __name__ == '__main__':
