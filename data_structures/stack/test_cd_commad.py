@@ -4,7 +4,7 @@ from cd_command import (
 )
 
 
-class TestSolution(unittest.TestCase):
+class TestProgram(unittest.TestCase):
 
     def test_solution(self):
         test_params = [
@@ -26,4 +26,4 @@ class TestSolution(unittest.TestCase):
         for expected, kwargs in test_params:
             with self.subTest(**kwargs):
                 # expected, actual
-                self.assertEqual(expected, solution(**kwargs))
+                self.assertEqual(expected, cd_command(**kwargs))

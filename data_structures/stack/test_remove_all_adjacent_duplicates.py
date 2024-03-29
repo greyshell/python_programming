@@ -1,11 +1,10 @@
 import unittest
-from remove_all_adjacent_duplicates_in_string import (
-    solution,
+from remove_all_adjacent_duplicates import (
+    remove_all_adjacent_duplicates,
 )
 
 
-class TestSolution(unittest.TestCase):
-
+class TestProgram(unittest.TestCase):
     def test_solution(self):
         test_params = [
             ("ay", {"s": "azxxzy"}),
@@ -14,5 +13,5 @@ class TestSolution(unittest.TestCase):
         for expected, kwargs in test_params:
             with self.subTest(**kwargs):
                 # expected, actual
-                self.assertEqual(expected, solution(**kwargs))
+                self.assertEqual(expected, remove_all_adjacent_duplicates(**kwargs))
 

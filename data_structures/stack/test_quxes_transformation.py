@@ -1,9 +1,9 @@
 import unittest
 
-from quxes_transformation import solution
+from quxes_transformation import quxes_transformation
 
 
-class TestSolution(unittest.TestCase):
+class TestProgram(unittest.TestCase):
     def test_solution(self):
         test_params = [
             (['R'], {"arrangement": ['R', 'G', 'B', 'G', 'B']}),
@@ -12,4 +12,4 @@ class TestSolution(unittest.TestCase):
 
         for expected, kwargs in test_params:
             self.subTest(**kwargs)
-            self.assertEqual(expected, solution(**kwargs))
+            self.assertEqual(expected, quxes_transformation(**kwargs))

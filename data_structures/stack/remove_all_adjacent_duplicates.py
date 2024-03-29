@@ -1,4 +1,4 @@
-def solution(s: str) -> str:
+def remove_all_adjacent_duplicates(s: str) -> str:
     stack = []
 
     for ch in s:

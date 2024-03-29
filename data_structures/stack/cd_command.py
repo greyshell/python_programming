@@ -1,4 +1,4 @@
-def solution(cwd: str, arg: str) -> str:
+def cd_command(cwd: str, arg: str) -> str:
 
     stack = []
 

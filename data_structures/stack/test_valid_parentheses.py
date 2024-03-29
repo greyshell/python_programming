@@ -1,25 +1,26 @@
 import unittest
 from valid_parentheses import (
-    solution,
+    valid_parentheses,
 )
 
 
-class TestSolution(unittest.TestCase):
+class TestProgram(unittest.TestCase):
 
     def test_solution(self):
         test_params = [
-            (True, {"s": "()"}),
-            (True, {"s": "(())"}),
-            (True, {"s": "(()())"}),
-            (False, {"s": "))"}),
-            (False, {"s": ")("}),
-            (False, {"s": "(("}),
-            (False, {"s": "(()()"}),
-            (False, {"s": "()("}),
-            (False, {"s": "{[(])}"}),
-            (True, {"s": "{{[[(())]]}}"}),
+            (True, {"string": "()"}),
+            (True, {"string": "(())"}),
+            (True, {"string": "(()())"}),
+            (False, {"string": "))"}),
+            (False, {"string": ")("}),
+            (False, {"string": "(("}),
+            (False, {"string": "(()()"}),
+            (False, {"string": "()("}),
+            (False, {"string": "{[(])}"}),
+            (True, {"string": "{{[[(())]]}}"}),
+            (False, {"string": "(((((({{{{{safaf[[[[[([)]safsafsa)]]]]]}}}gawga}}))))))"})
         ]
 
         for expected, kwargs in test_params:
             with self.subTest(**kwargs):
-                self.assertEqual(expected, solution(**kwargs))
+                self.assertEqual(expected, valid_parentheses(**kwargs))

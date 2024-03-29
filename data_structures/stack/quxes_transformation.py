@@ -28,7 +28,7 @@ def _transform(qux1: str, qux2: str) -> str:
     return result.pop()  # return the first element in the set
 
 
-def solution(arrangement):
+def quxes_transformation(arrangement):
     stack = deque()
     for qux in arrangement:
         if (len(stack) == 0 or   # stack is empty
