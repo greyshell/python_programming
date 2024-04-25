@@ -1,5 +1,5 @@
 import unittest
-from valid_parentheses import (
+from check_valid_parentheses import (
     valid_parentheses,
 )
 

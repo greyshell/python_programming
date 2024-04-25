@@ -25,14 +25,13 @@ def _transform(qux1: str, qux2: str) -> str:
     if qux1 == qux2:
         raise ValueError("Cannot form new Qux")
     result = QUXES - {qux1, qux2}
-    return result.pop()  # return the first element in the set
+    return result.pop()  # return the only element present in the set
 
 
 def quxes_transformation(arrangement):
-    stack = deque()
+    stack = []
     for qux in arrangement:
-        if (len(stack) == 0 or   # stack is empty
-                stack[-1] == qux):  # stack peek
+        if len(stack) == 0 or stack[-1] == qux:
             stack.append(qux)
         else:
             qux_last = stack.pop()
@@ -44,8 +43,7 @@ def quxes_transformation(arrangement):
                     break
                 qux_last = stack.pop()
             stack.append(qux)
-    # convert the deque object to list
-    out = list(stack)
-    return out
+
+    return stack
 
 

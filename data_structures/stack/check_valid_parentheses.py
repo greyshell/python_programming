@@ -1,11 +1,12 @@
 from collections import deque
 
-"""
-ref: https://leetcode.com/problems/valid-parentheses/
-"""
-
 
 def valid_parentheses(string: str) -> bool:
+    """
+    problem statement: https://leetcode.com/problems/valid-parentheses/
+    time complexity: O(n)
+    space complexity: O(n)
+    """
     # The stack to keep track of opening brackets.
     stack = []
     opening_brackets = ['(', '{', '[']

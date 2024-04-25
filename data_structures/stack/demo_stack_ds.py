@@ -10,7 +10,7 @@ def demo_stack():
     - it does not guarantee the stable O(1) push and pop
     - however, it provides the amortize time complexity is O(1) when the item is added / remove at
     the end of list
-    - adding / removing from front / middle is much slower and it takes O(n) time as shifting of
+    - adding / removing from front / middle is much slower, and it takes O(n) time as shifting of
     existing elements
     are required
     - no parallel processing support / it handles locking and unlocking
@@ -19,13 +19,16 @@ def demo_stack():
     if len(stack) == 0:
         print('empty stack')
 
+    if not stack:  # if the stack is empty
+        print('empty stack')
+
     # push: O(1), stack grows from left to right
     stack.append(9)
     stack.append(5)
     stack.append(3)
     stack.append(2)
 
-    if len(stack):
+    if len(stack):  # if stack:
         print('non empty stack')
 
     # display the stack elements
@@ -47,13 +50,12 @@ def demo_stack():
 
 
 def demo_stack_alt():
-    from collections import deque
     """
     - deque is backed by doubly linked list
     - it that guarantees the stable O(1) push and pop
     - no parallel processing support / it handles locking and unlocking
-    :return:
     """
+    from collections import deque
     stack = deque()
 
     if len(stack) == 0:

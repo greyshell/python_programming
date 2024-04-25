@@ -9,6 +9,8 @@ class TestProgram(unittest.TestCase):
             ("98763", {"number": "129847563", "num_digits": 4}),
             ("9", {"number": "19", "num_digits": 1}),
             ("2", {"number": "22", "num_digits": 1}),
+            ("49", {"number": "249", "num_digits": 1}),
+            ("94", {"number": "942", "num_digits": 1}),
         ]
 
         for expected, kwargs in test_params:
