@@ -105,7 +105,7 @@ def main():
     # demo_max_heap()
     # build a max heap from an existing list
     nums = [12, 7, 11, 15, 35, 17]
-    max_heap = [MaxHeapNode(n) for n in nums]  # create a obj list
+    max_heap = [MaxHeapNode(n) for n in nums]  # create an obj list
     heapq.heapify(max_heap)
 
     # peek the max item
