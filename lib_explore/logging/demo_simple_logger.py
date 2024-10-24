@@ -13,8 +13,8 @@ logging.basicConfig(
 
 
 if __name__ == '__main__':
-    type(print(logging.INFO))
-    exit()
+    # type(print(logging.INFO))
+    # this is root logger
     logging.debug("debug")
     logging.info("info")
     logging.warning("warning")

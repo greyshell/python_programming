@@ -7,7 +7,7 @@ import logging
 
 def init_logger():
     mylogger = logging.getLogger()
-    # set the default thresold to minimum
+    # set the default threshold to minimum
     mylogger.setLevel(logging.DEBUG)
     # set the default formatter
     default_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -19,7 +19,7 @@ def init_logger():
     mylogger.addHandler(console_handler)
 
     # create file handler with a higher log level
-    file_handler = logging.FileHandler(filename="log.txt", mode="w")
+    file_handler = logging.FileHandler(filename="log.txt", mode="w")  # overwrite the existing log
     file_handler.setLevel(logging.ERROR)
     file_handler_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(pathname)s:%(lineno)s - %(message)s')
     file_handler.setFormatter(file_handler_formatter)

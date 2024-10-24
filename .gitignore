@@ -1,4 +1,14 @@
 # Gitignore Python
+# ignore all the git repos that
+
+
+
+tmp/
+unarranged/
+course_solution/
+interview_practice/
+unarranged/test_coding/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -185,10 +195,4 @@ cmake-build-*/
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
-
-tmp/
-unarranged/
-workshop/
-interview_practice/
-unarranged/test_coding/
 

@@ -69,7 +69,7 @@ pytz==2020.4
 pywatchman==1.4.1
 PyYAML==5.3.1
 regex==2020.11.13
-requests==2.25.1
+requests~=2.32.3
 ROPGadget==6.5
 scrypt==0.8.17
 SecretStorage==3.3.0
@@ -97,3 +97,7 @@ wget==3.2
 WTForms==2.3.3
 
 pytest~=6.2.5
+
+websockets~=12.0
+bs4~=0.0.2
+beautifulsoup4~=4.12.3

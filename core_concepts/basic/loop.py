@@ -53,13 +53,13 @@ for n in range(low, high):
 # alternate: without using else block
 print("")
 for n in range(low, high):
-    is_prime_flag = True
+    break_hit_flag = False
     for i in range(2, n // 2):
         if n % i == 0:
-            is_prime_flag = False  # need to send a flag outside the loop and determine prime
+            break_hit_flag = True  # need to send a flag outside the loop and determine prime
             break
 
-    if is_prime_flag is True:  # means break statement did not hit
+    if not break_hit_flag:  # means break statement did not hit
         print(f"prime: {n}")
 
 

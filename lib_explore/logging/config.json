@@ -1,0 +1,37 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+        "simple": {
+            "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        }
+    },
+    "handlers": {
+        "stdout": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+            "level": "DEBUG",
+            "stream": "ext://sys.stdout"
+        },
+
+        "file": {
+            "class": "logging.FileHandler",
+            "formatter": "simple",
+            "level": "DEBUG",
+            "filename": "my_app.log",
+            "mode": "w"
+        },
+
+        "queue_handler": {
+            "class": "logging.handlers.QueueHandler",
+            "handlers": ["stdout", "file"],
+            "respect_handler_level": true
+        }
+    },
+    "loggers": {
+        "root": {
+            "handlers": ["queue_handler"],
+            "level": "DEBUG"
+        }
+    }
+}
