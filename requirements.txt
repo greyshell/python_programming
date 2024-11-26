@@ -20,7 +20,7 @@ decouple==0.0.7
 docutils==0.16
 Flask==1.1.2
 Flask-WTF==0.14.3
-future==0.18.2
+future==0.18.3
 greenlet==0.4.17
 idna==2.10
 imagesize==1.2.0
