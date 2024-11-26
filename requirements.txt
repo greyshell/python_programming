@@ -67,7 +67,7 @@ PySocks==1.7.1
 python-dateutil==2.8.1
 pytz==2020.4
 pywatchman==1.4.1
-PyYAML==5.3.1
+PyYAML==5.4
 regex==2020.11.13
 requests~=2.32.3
 ROPGadget==6.5
