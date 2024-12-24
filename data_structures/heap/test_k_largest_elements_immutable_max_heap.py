@@ -5,9 +5,6 @@ from k_largest_elements_immutable_max_heap import (
 )
 
 
-from libozone import Heap, HeapType
-
-
 class Test(unittest.TestCase):
     """
     how to run: python -m unittest test_<file_name>.py
@@ -15,8 +12,7 @@ class Test(unittest.TestCase):
     def test_get_k_largest_elements_immutable_max_heap(self):
         # expected, actual
         test_params = [
-            ([17, 16, 15, 14], {"immutable_max_heap": Heap([7, 17, 16, 2, 3, 15, 14], heap_type=HeapType.MAX), "k": 4}),
-
+            ([17, 16, 15, 14], {"immutable_max_heap": [17, 7, 16, 2, 3, 15, 14], "k": 4}),
         ]
         for expected, kwargs in test_params:
             with self.subTest(**kwargs):

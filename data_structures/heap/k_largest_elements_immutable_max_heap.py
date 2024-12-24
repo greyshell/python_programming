@@ -24,7 +24,7 @@ class Node:
         return self.value != other.value
 
 
-def get_k_largest_elements_immutable_max_heap(immutable_max_heap: Heap, k: int) -> list:
+def get_k_largest_elements_immutable_max_heap(immutable_max_heap: list, k: int) -> list:
     """
     time complexity: O(k * log k)
     space complexity: O(k) -> auxiliary max heap
@@ -34,7 +34,7 @@ def get_k_largest_elements_immutable_max_heap(immutable_max_heap: Heap, k: int) 
 
     # peek the max item from the immutable max heap
     # create a node obj with the value and index and push into auxiliary_max_heap
-    node = Node(immutable_max_heap.peek(), 0)
+    node = Node(value=immutable_max_heap[0], index=0)
     auxiliary_max_heap.insert(node)
 
     result = list()
@@ -50,15 +50,21 @@ def get_k_largest_elements_immutable_max_heap(immutable_max_heap: Heap, k: int) 
 
         if left_child_index < len(immutable_max_heap):
             # get the value based on index
-            left_child = immutable_max_heap.__getitem__(left_child_index)
+            left_child = immutable_max_heap[left_child_index]
             left_node = Node(left_child, left_child_index)
             auxiliary_max_heap.insert(left_node)
 
         right_child_index = 2 * index + 2
 
         if right_child_index < len(immutable_max_heap):
-            right_child = immutable_max_heap.__getitem__(right_child_index)
+            right_child = immutable_max_heap[right_child_index]
             right_node = Node(right_child, right_child_index)
             auxiliary_max_heap.insert(right_node)
 
     return result
+
+
+if __name__ == '__main__':
+    immutable_max_heap = [17, 7, 16, 2, 3, 15, 14]  # given array format, max element at 0th index
+    out = get_k_largest_elements_immutable_max_heap(immutable_max_heap, k=4)
+    print(out)
