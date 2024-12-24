@@ -27,8 +27,8 @@ if __name__ == '__main__':
     logger.warning("warning")
     logger.error("error")
     logger.critical("critical")
-    try:
-        1 / 0
-    # send exception to the logger
-    except ZeroDivisionError:
-        logger.exception("exception message")
+    # try:
+    #     1 / 0
+    # # send exception to the logger
+    # except ZeroDivisionError:
+    #     logger.exception("exception message")

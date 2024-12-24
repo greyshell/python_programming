@@ -1,7 +1,3 @@
-#!/usr/bin/env python3
-
-# author: greyshell
-# description: bfs traversals on a connected undirected graph
 
 from collections import deque
 
@@ -22,7 +18,7 @@ def bfs(undirected_graph, start_vertex):
     # add the source vertex into the visited set
     visited.add(start_vertex)
 
-    # add the start vertex_name into the queue --> minheap
+    # add the start vertex_name into the queue
     queue = deque()
     queue.append(start_vertex)
 
@@ -42,16 +38,18 @@ def bfs(undirected_graph, start_vertex):
 
 
 if __name__ == '__main__':
-    # ref: Sedgewick Algorithms 4th edition, page 532
-    UG = {
-        0: [1, 2, 5],
-        1: [0, 2],
-        2: [0, 1, 4],
-        3: [2, 4, 5],
-        4: [2, 3],
-        5: [0, 3]
+    # dict representation
+    # pg: 614
+    ewg = {
+        # source_node: [{dest_node: weight}, {dest_node: weight}]
+        0: [{2: 0.26}, {4: 0.38}],
+        1: [{7: 0.19}],
+        2: [{7: 0.34}],
+        3: [],
+        4: [{7: 0.37}],
+        5: [{7: 0.28}],
+        6: [{0: 0.58}],
+        7: []
     }
 
-    print(f"[+] bfs traversal: ")
-    print(f"[+] BFS: single source shortest path")
-    print(bfs(UG, start_vertex=0))
+    print(f"{ewg}")

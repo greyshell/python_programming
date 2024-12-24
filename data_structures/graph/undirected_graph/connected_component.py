@@ -65,7 +65,7 @@ if __name__ == '__main__':
     print(f"[+] Total connected component[s]: {cc.count}")
 
     node = 9
-    print(f"[+] Component id for {node}: {cc.component_table.get(node, None)}")
+    print(f"[+] node: {node}, component id: {cc.component_table.get(node, None)}")
 
     src_v = 9
     dst_v = 12

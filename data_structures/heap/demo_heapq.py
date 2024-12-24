@@ -79,7 +79,8 @@ def demo_max_satellite_heap():
     max_heap = list()
 
     # compare based on the age
-    heapq.heappush(max_heap, HeapSatelliteNode('asinha', 39))
+    a = HeapSatelliteNode('asinha', 39)
+    heapq.heappush(max_heap, a)
     heapq.heappush(max_heap, HeapSatelliteNode('dhaval', 22))
     heapq.heappush(max_heap, HeapSatelliteNode('ravi', 23))
 
