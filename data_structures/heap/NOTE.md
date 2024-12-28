@@ -5,3 +5,5 @@
 2. find k largest elements from an array
 3. find k largest elements from an immutable max heap
 4. sort k-sorted array
+5. merge sorted arrays
+6. laptop rentals

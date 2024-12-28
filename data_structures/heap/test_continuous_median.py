@@ -9,7 +9,7 @@ class Test(unittest.TestCase):
     """
     how to run: python -m unittest test_<file_name>.py
     """
-    def test_heap_operations_01(self):
+    def test_continuous_median_case01(self):
         heap = MedianFinder()
         heap.add_num(1)
         self.assertEqual(1, heap.get_median())
