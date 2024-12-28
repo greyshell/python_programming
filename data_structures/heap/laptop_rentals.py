@@ -27,18 +27,23 @@ class Node:
 
 
 def laptop_rentals(times):
+    """
+    time: O(n*log(n))
+    space: O(n)
+    """
     if len(times) == 0:
         return 0
 
+    # time: O(n * log(n))
     times.sort(key=lambda x: x[0])
 
     interval_array = list()
     # preparing nodes
     node = Node(start_time=times[0][0], end_time=times[0][1])
     interval_array.append(node)
-    min_heap = Heap(interval_array)
+    min_heap = Heap(interval_array)  # time: O(n)
 
-    for index in range(1, len(times)):
+    for index in range(1, len(times)):  # time: O(n*log(k)), k is the heap size
         current_interval = times[index]
         start_time = current_interval[0]
         end_time = current_interval[1]
