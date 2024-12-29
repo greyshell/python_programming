@@ -24,6 +24,9 @@
 9. `video`: Neetcode: https://neetcode.io/courses 
 10. `video`: Greg Hogg: https://algomap.io/list
 11. `video`: William Fiset: https://www.youtube.com/user/purpongie/playlists
+12. `note`: https://www.educative.io/courses/grokking-coding-interview
+13. `note`: https://www.educative.io/courses/dynamic-programming-in-python
+14. `note`: https://www.educative.io/courses/bit-manipulation
 
 ### Books
 
