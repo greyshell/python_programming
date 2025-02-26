@@ -13,7 +13,7 @@ chardet==4.0.0
 click==7.1.2
 colorama==0.4.4
 config==0.5.0.post0
-cryptography==3.3.1
+cryptography==39.0.1
 curtsies==0.3.4
 dataclasses-json==0.5.2
 decouple==0.0.7
