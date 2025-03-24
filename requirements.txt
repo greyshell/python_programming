@@ -38,7 +38,7 @@ Markdown==3.3.3
 MarkupSafe==1.1.1
 marshmallow==3.10.0
 marshmallow-enum==1.5.1
-mkdocs==1.1.2
+mkdocs==1.2.3
 mkdocs-bootswatch==1.1
 mkdocs-material==6.1.7
 mkdocs-material-extensions==1.0.1
